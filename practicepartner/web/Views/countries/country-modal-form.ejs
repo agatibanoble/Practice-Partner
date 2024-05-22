@@ -1,0 +1,68 @@
+<div
+  class="modal fade"
+  id="country-modal-form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="country-modal-form-modalTitle"
+  aria-hidden="true"
+>
+  <form class="needs-validation" id="frm-country" method="post" novalidate>
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog modal-md"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="country-modal-form-modalTitle">
+            Add/Edit country
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="country-name" class="form-label"
+                  >Country name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="country-name"
+                  name="countryName"
+                  placeholder="Country Name"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="_id" name="id" />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            id="saveConferenceButton"
+            class="btn btn-primary"
+          >
+            Save <i class="fab fa-telegram-plane ms-1"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

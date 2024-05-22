@@ -1,0 +1,256 @@
+<style>
+  .ui-autocomplete {
+    z-index: 2147483647;
+  }
+</style>
+<div
+  class="modal fade"
+  id="case-modal-form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalTitle"
+  aria-hidden="true"
+>
+  <form class="needs-validation" id="frm-case" method="post" novalidate>
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog modal-xl"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Add/Edit Case</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label
+                        for="client-number"
+                        class="form-label font-size-13 text-muted"
+                        >Client</label
+                      >
+                      <input
+                        type="text "
+                        class="form-control"
+                        name="clientNumber"
+                        id="client-number"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-name"
+                        >Client Category</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="client-category"
+                        placeholder="Client Category"
+                        disabled
+                      />
+
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-name"
+                        >Client Type</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="client-type"
+                        placeholder="Client Type"
+                        disabled
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="mb-3">
+                      <label class="form-label" for="case-number">Case #</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="case-number"
+                        name="caseNumber"
+                        value=""
+                        placeholder="Case #"
+                        required
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="mb-">
+                      <label class="form-label" for="folio-number"
+                        >Folio #</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="folio-number"
+                        name="folioNumber"
+                        value=""
+                        placeholder="Folio #"
+                        required
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="mb-3">
+                      <label class="form-label" for="case-title"
+                        >Cast Title</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="case-title"
+                        name="caseTitle"
+                        placeholder="Case Title"
+                        required
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label class="form-label" for="case-category"
+                        >Category</label
+                      >
+                      <select
+                        class="form-control form-select"
+                        id="case-category"
+                        name="caseCategory"
+                        required
+                      >
+                        <option value>Category</option>
+
+                        <option value="">Select Client Category</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label class="form-label" for="court">Court</label>
+                      <select
+                        class="form-control form-select"
+                        id="court"
+                        name="court"
+                        required
+                      >
+                        <option value="">Select Court</option>
+                        <option value="Sunyani High Court">
+                          Sunyani High Court
+                        </option>
+                        <option value="Sunyani District Court">
+                          Sunyani District Court
+                        </option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="mb-3">
+                      <label class="form-label" for="case-start-date"
+                        >Start Date</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control datepicker"
+                        id="case-start-date"
+                        name="caseStartDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="mb-3">
+                      <label class="form-label" for="case-end-date"
+                        >End Date</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control datepicker"
+                        id="case-end-date"
+                        name="caseEndDate"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label" for="case-fact-editor"
+                        >Brief Facts</label
+                      >
+                      <!-- <div class="mb-3 email-editor"> -->
+                      <textarea
+                        id="case-fact-editor"
+                        name="caseFacts"
+                      ></textarea>
+                      <!-- </div> -->
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-lg-12">
+              <input type="hidden" name="client" id="client-id" />
+              <input type="hidden" name="_id" id="_id" />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" id="saveButton" class="btn btn-primary">
+                Save <i class="fab fa-telegram-plane ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

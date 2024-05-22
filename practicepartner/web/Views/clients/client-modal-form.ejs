@@ -1,0 +1,185 @@
+<div
+  class="modal fade"
+  id="client-modal-form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalTitle"
+  aria-hidden="true"
+>
+  <form class="needs-validation" id="frm-client" method="post" novalidate>
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog modal-xl"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Add/Edit Client</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Basic Details</h4>
+                <p class="card-title-desc">
+                  Provide basic bio details of the Client. .
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-number"
+                        >Client Number</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="client-number"
+                        name="clientNumber"
+                        value=""
+                        placeholder="Client Number"
+                        required
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-name"
+                        >Client Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="client-name"
+                        name="clientName"
+                        placeholder="Client Name"
+                        required
+                      />
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-category"
+                        >Category</label
+                      >
+                      <select
+                        class="form-control form-select"
+                        id="client-category"
+                        name="clientCategory"
+                        required
+                      >
+                        <option value>Category</option>
+
+                        <option value="">Select Client Category</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-referral-type"
+                        >Referral Type</label
+                      >
+                      <select
+                        class="form-control form-select"
+                        id="client-referral-type"
+                        name="clientReferralType"
+                        required
+                      >
+                        <option value="">Select Referral Type</option>
+                        <option value="Walk In">Walk In</option>
+                        <option value="Referred">Referred</option>
+                      </select>
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-type"
+                        >Client By</label
+                      >
+                      <select
+                        class="form-control form-select"
+                        id="client-type"
+                        name="clientType"
+                      >
+                        <option value="">Select Client Type</option>
+                        <option value="Company">Company</option>
+                        <option value="Individual">Individual</option>
+                        <option value="Group">Group</option>
+                        <option value="Association">Association</option>
+                        <option value="Government">Government</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label class="form-label" for="client-description-editor"
+                        >Description</label
+                      >
+                      <!-- <div class="mb-3 email-editor"> -->
+                      <textarea
+                        id="client-description-editor"
+                        name="clientDescription"
+                      ></textarea>
+                      <!-- </div> -->
+                      <div class="valid-feedback">Looks good!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-lg-12">
+              <input type="hidden" name="id" id="_id" />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" id="saveButton" class="btn btn-primary">
+                Save <i class="fab fa-telegram-plane ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- <script type="module" src="/logic/clientModules/clientModalForm.js"></script> -->

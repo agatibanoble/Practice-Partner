@@ -1,0 +1,53 @@
+<div
+  id="contact-person-page"
+  class="modal fade"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="contact-person-page-modalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contact-person-page-modalTitle"></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-12 text-end">
+                <a href="#" class="btn btn-light" id="btn-new-contact-person"
+                  ><i class="bx bx-plus me-1"></i> Add New</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row cardBody"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary waves-effect"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</div>
+<%- include ('./contact-person-modal-form') %>

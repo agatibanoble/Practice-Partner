@@ -1,0 +1,193 @@
+<div
+  id="client-profile-modal"
+  class="modal fade"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="client-profile-modalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="client-profile-modalTitle"></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-md-6">
+                    <!-- <div class="col-sm-4"> -->
+                    <div class="search-box me-2 mb-2 d-inline-block">
+                      <div class="position-relative">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Search..."
+                        />
+                        <i class="bx bx-search-alt search-icon"></i>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+
+                  <div class="col-md-6">
+                    <div
+                      class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3"
+                    >
+                      <div>
+                        <a href="#" class="btn btn-light" id="btn-edit-client"
+                          ><i class="mdi mdi-pencil me-1"></i> Edit Client</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--begin-->
+                <div class="row">
+                  <div class="col-12">
+                    <!-- Left sidebar -->
+                    <div class="email-leftbar card fixed-menu">
+                      <div class="mail-list mt-4">
+                        <a href="#detailSection" class="scroll-link active"
+                          ><i class="mdi mdi-email-outline me-2"></i> Details
+                          <span class="ms-1 float-end"></span
+                        ></a>
+                        <a href="#" id="btn-client-addresses">
+                          <i class="mdi mdi-email-outline me-2"></i> Address
+                          <span class="ms-1 float-end"></span>
+                        </a>
+                        <a href="#" id="btn-contact-persons"
+                          ><i class="mdi mdi-star-outline me-2"></i> Contacts</a
+                        >
+                        <a href="#" id="btn-client-conferences"
+                          ><i class="mdi mdi-file-outline me-2"></i
+                          >Conferences</a
+                        >
+                        <a href="#" id="btn-client-cases"
+                          ><i class="mdi mdi-diamond-stone me-2"></i>Cases</a
+                        >
+
+                        <a href="#" id="btn-client-files"
+                          ><i class="mdi mdi-file-outline me-2"></i>Files</a
+                        >
+                        <a href="#invoiceSection" class="scroll-link"
+                          ><i class="mdi mdi-file-outline me-2"></i>Invoices</a
+                        >
+                        <a href="#paymentSection" class="scroll-link"
+                          ><i class="mdi mdi-file-outline me-2"></i>Payments</a
+                        >
+                      </div>
+
+                      <h6 class="mt-4">Other Details</h6>
+
+                      <div class="mail-list mt-1">
+                        <a href="javascript: void(0);"
+                          ><span
+                            class="mdi mdi-arrow-right-drop-circle text-info float-end"
+                          ></span
+                          >Communication</a
+                        >
+                        <a href="javascript: void(0);"
+                          ><span
+                            class="mdi mdi-arrow-right-drop-circle text-warning float-end"
+                          ></span
+                          >Complaints</a
+                        >
+                        <a href="javascript: void(0);"
+                          ><span
+                            class="mdi mdi-arrow-right-drop-circle text-primary float-end"
+                          ></span
+                          >Visits</a
+                        >
+                      </div>
+                    </div>
+                    <!-- End Left sidebar -->
+
+                    <!-- Right Sidebar -->
+                    <div class="email-rightbar mb-0 content-area">
+                      <div class="card">
+                        <div class="card-body">
+                          <!-- Target sections to scroll to -->
+                          <section id="detailSection" class="target-section">
+                            <div class="container mt-0">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <!-- Profile Picture -->
+                                  <img
+                                    src="https://via.placeholder.com/150"
+                                    alt="Profile Picture"
+                                    class="img-fluid mb-3 client-image"
+                                  />
+                                </div>
+                                <div class="col-md-8">
+                                  <!-- Personal Information -->
+                                  <h4 class="client-name"></h4>
+                                  <p class="client-number"></p>
+                                  <p class="client-category"></p>
+                                  <p class="client-type"></p>
+                                  <p class="client-referral-type"></p>
+                                  <hr />
+                                  <!-- Additional Information -->
+                                  <h5>About</h5>
+                                  <div class="container mt-0">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="row">
+                                          <div
+                                            class="col-md-12 d-flex justify-content-begin align-items-center"
+                                          ></div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <p class="client-description"></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- card -->
+                  </div>
+                  <!-- end Col -->
+                </div>
+                <!-- end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger waves-effect"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<%- include ('contact-address-views/contact-addresses') %> <%- include
+('contact-person-views/contact-person-page') %> <%- include
+('conference-views/conference-page') %>

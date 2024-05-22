@@ -1,0 +1,69 @@
+<div
+  class="modal fade"
+  id="case-category-modal-form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="case-category-modal-form-modalTitle"
+  aria-hidden="true"
+>
+  <form
+    class="needs-validation"
+    id="frm-case-category"
+    method="post"
+    novalidate
+  >
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog modal-md"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="case-category-modal-form-modalTitle">
+            Add/Edit Region
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="case-category-name" class="form-label"
+                  >Case Category</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="case-category-name"
+                  name="caseCategoryName"
+                  placeholder="Case Category"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="hidden" id="_id" name="id" />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Save <i class="fab fa-telegram-plane ms-1"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

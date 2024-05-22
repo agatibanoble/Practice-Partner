@@ -1,0 +1,28 @@
+<script>
+  flatpickr(".datepicker", {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+    defaultDate: new Date(),
+  });
+</script>
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        © The Law Guide Society.
+      </div>
+      <div class="col-sm-6">
+        <div class="text-sm-end d-none d-sm-block">
+          Design & Develop by
+          <a href="#!" class="text-decoration-underline"
+            >The Law Guide Society</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

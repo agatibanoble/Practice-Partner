@@ -1,0 +1,190 @@
+<%- contentFor('HeaderCss') %>
+
+<!-- Sweet Alert-->
+<%- contentFor('body') %>
+
+<!-- start page title -->
+
+<!-- end page title -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Seetings</h4>
+        <p class="card-title-desc">Select an item and click to edit</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-nowrap align-middle justify-content-center mb-0"
+          >
+            <thead>
+              <tr>
+                <th scope="col" style="width: 50%">Item</th>
+                <th scope="col" class="text-center">Click to Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Firm Details</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-firm-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Countries</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-country-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Regions</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-region-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Client Categories</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-client-category-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Case Category</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-case-category-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Courts</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-court-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">A message with auto close timer</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="sa-close"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Custom HTML description and buttons</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="custom-html-alert"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">A custom positioned dialog</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="sa-position"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  A message with custom width, padding and background
+                </th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="custom-padding-width-alert"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Ajax request example</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="ajax-alert"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- end table -->
+        </div>
+        <!-- end table responsive -->
+      </div>
+    </div>
+  </div>
+  <!-- end col -->
+</div>
+<!-- end row -->
+<%- include ('../countries/country-modal-page') %><%- include
+('../firm-views/firm-modal-page') %><%- include
+('../region-views/region-modal-page') %><%- include
+('../client-category-views/client-category-modal-page') %><%- include
+('../case-category-views/case-category-modal-page') %><%- include
+('../court-views/court-modal-page') %>
+<script type="module" src="../logic/settings/settings.js"></script>
+<%- contentFor('FooterJs') %>

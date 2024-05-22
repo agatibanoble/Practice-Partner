@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title><%- title %> | The Law Guide Society</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="The Law Guide Society" name="TLG" />
+    <meta content="Themesdesign" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+
+    <%- HeaderCss %> <%- include ('./head-css') %>
+  </head>
+
+  <body
+    data-layout-mode="light"
+    data-layout-mode="light"
+    data-topbar="light"
+    data-sidebar="light"
+    data-sidebar="brand"
+    class="pace-done sidebar-enable"
+    data-sidebar-size="lg"
+  >
+    <div class="modal-overlay"></div>
+    <%- include ('./header') %>
+    <div id="layout-wrapper">
+      <%- include ('./topbar') %> <%- include ('./left-sidebar') %>
+      <div class="main-content">
+        <div class="page-content">
+          <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+              <div class="col-12">
+                <div
+                  class="page-title-box d-sm-flex align-items-center justify-content-between"
+                >
+                  <h4 class="mb-sm-0 font-size-18"><%- title %></h4>
+
+                  <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                      <li class="breadcrumb-item">
+                        <a href="javascript: void(0);">Apps</a>
+                      </li>
+                      <li class="breadcrumb-item active"><%- title %></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end page title -->
+            <%- body %>
+          </div>
+        </div>
+        <%- include ('./footer') %>
+      </div>
+    </div>
+    <%- include ('./right-sidebar') %> <%-
+    include('../communications/emails/compose-email') %><%- include
+    ('./vendor-script') %> <%- FooterJs %>
+    <!-- pristine js -->
+    <script src="/assets/libs/pristinejs/pristine.min.js"></script>
+    <!-- form validation -->
+    <!-- <script src="/assets/js/pages/form-validation.init.js"></script> -->
+    <!-- alertifyjs js -->
+    <script src="/assets/libs/alertifyjs/build/alertify.min.js"></script>
+    <!-- notification init -->
+
+    <script src="/assets/js/app.js"></script>
+  </body>
+</html>

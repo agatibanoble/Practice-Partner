@@ -1,0 +1,261 @@
+<%- contentFor('HeaderCss') %> <%- contentFor('body') %>
+<form
+  class="needs-validation"
+  action="/createClient"
+  id="frm-create-client-old"
+  method="post"
+  novalidate
+>
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Basic Bio Details</h4>
+        <p class="card-title-desc">
+          Provide basic bio details of the Client. .
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="mb-3">
+              <label class="form-label" for="clientNumber">Client Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="clientNumber"
+                name="clientNumber"
+                value=""
+                placeholder="Client Number"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label class="form-label" for="clientName">Client Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="clientName"
+                name="clientName"
+                placeholder="Client Name"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label" for="client-category">Category</label>
+              <select
+                class="form-control form-select"
+                id="clientCategoryId"
+                name="clientCategory"
+                required
+              >
+                <option value>Category</option>
+
+                <option value="">Select Client Category</option>
+              </select>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card -->
+  </div>
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Other Details</h4>
+        <p class="card-title-desc">
+          Provide basic bio details of the Client. .
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label" for="region">Region/State</label>
+              <select
+                class="form-control form-select"
+                id="region"
+                name="region"
+                required
+              >
+                <option value="">Select Region</option>
+              </select>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label" for="city">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                name="city"
+                value="ksi"
+                placeholder="City"
+                required
+              />
+              <div class="invalid-feedback">Please provide a valid city.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label" for="land-mark">Land Mark</label>
+              <input
+                type="text"
+                class="form-control"
+                id="land-mark"
+                name="land_mark"
+                value="West Hill Mall"
+                placeholder="Land Mark"
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid Land Mark.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label" for="postal-address"
+                >Postal Address</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="postal-address"
+                name="postal_address"
+                value="postal address here"
+                placeholder="Postal Address"
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid Postal Address.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label" for="permanent-address"
+                >Permanent Address</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="permanent-address"
+                name="permanent_address"
+                value="permanent address here"
+                placeholder="Permanent Address"
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid Permanent Address.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="form-label" for="office-phone-number"
+                >Office Phone</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="office-phone-number"
+                name="office_phone_number"
+                value="523432432"
+                placeholder="Office Phone"
+                ,
+                required
+              />
+              <div class="invalid-feedback">
+                This field requires a valid e-mail address
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="form-label" for="mobile-phone-number"
+                >Mobile Phone</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="mobile-phone-number"
+                name="mobile_phone_number"
+                placeholder="Mobile Number"
+                value="2343432"
+                required
+              />
+              <div class="invalid-feedback">
+                This field requires a valid Phone Number
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="form-label" for="email-address">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email-address"
+                name="email_address"
+                value="fdsfdsf@sfdsfsd.com"
+                placeholder="Email"
+                required=""
+              />
+              <div class="invalid-feedback">
+                This field requires a valid e-mail address
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card -->
+  </div>
+  <!-- end col -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Ready to Submit?</h4>
+          <p class="card-title-desc">Review Content Before Submitting</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="mb-3">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="invalidCheck"
+                  checked="checked"
+                  required
+                />
+                <label class="form-check-label" for="invalidCheck"
+                  >I have read and verified the content</label
+                >
+                <div class="invalid-feedback">
+                  You must verify content before submitting.
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="_id" />
+          <button class="btn btn-success" type="submit">Submit form</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

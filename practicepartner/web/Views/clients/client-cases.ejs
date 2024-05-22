@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-header">Cases</div>
+  <div class="card-body">
+    <div class="row mt-3 mb-3">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 d-flex justify-content-end align-items-center">
+        <a
+          class="btn btn-light btn-block btn-xs"
+          data-toggle="collapse"
+          href="#collapse-cases"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapse-cases"
+          id="btn-open-client-case-modal-form"
+          ><i class="mdi mdi-download me-1"></i>Open
+        </a>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="collapse" id="collapse-cases">
+      <div class="table-responsive">
+        <table class="table align-middle table-nowrap table-check" id="records">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 20px" class="align-middle">
+                <div class="form-check font-size-16">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="checkAll"
+                  />
+                  <label class="form-check-label" for="checkAll"></label>
+                </div>
+              </th>
+              <th class="align-middle">Clients Number</th>
+              <th class="align-middle">Clients Name</th>
+              <th class="align-middle">Category</th>
+              <th class="align-middle">Type</th>
+              <th class="align-middle">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table rows -->
+            <tr>
+              <td>
+                <div class="form-check font-size-16">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="orderidcheck01"
+                  />
+                  <label class="form-check-label" for="orderidcheck01"></label>
+                </div>
+              </td>
+              <td>
+                <a href="javascript: void(0);" class="text-body fw-bold"></a>
+              </td>
+              <td>
+                <p class="mb-1"></p>
+                <p class="mb-0">np</p>
+              </td>
+              <td>
+                <p class="mb-1">325-250-1106</p>
+                <p class="mb-0">StephenRash@teleworm.us</p>
+              </td>
+              <td>
+                <p class="mb-1">P:</p>
+                <p class="mb-0">R:</p>
+              </td>
+              <td>
+                <div class="dropdown">
+                  <a
+                    href="#"
+                    class="dropdown-toggle card-drop"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="mdi mdi-dots-horizontal font-size-18"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a href="#" class="dropdown-item"
+                        ><i
+                          class="mdi mdi-eye font-size-16 text-success me-1"
+                        ></i>
+                        View</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item"
+                        ><i
+                          class="mdi mdi-pencil font-size-16 text-success me-1"
+                        ></i>
+                        Edit</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item"
+                        ><i
+                          class="mdi mdi-trash-can font-size-16 text-danger me-1"
+                        ></i>
+                        Delete</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

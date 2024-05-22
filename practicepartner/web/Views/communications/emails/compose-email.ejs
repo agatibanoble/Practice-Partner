@@ -1,0 +1,75 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="compose-email-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="compose-modal-title"
+  aria-hidden="true"
+>
+  <form
+    class="needs-validation"
+    id="frm-compose-email"
+    method="post"
+    novalidate
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-size-16" id="composemodalTitle">
+            New Message
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="to"
+                name="emailTo"
+                placeholder="To"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="subject"
+                name="emailSubject"
+                placeholder="Subject"
+              />
+            </div>
+            <div class="mb-3 editor">
+              <textarea class="message" id="message" name="message"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Send <i class="fab fa-telegram-plane ms-1"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- end modal -->
+<script
+  type="module"
+  src="/logic/communicationModules/emailModules/emailModule.js"
+></script>
