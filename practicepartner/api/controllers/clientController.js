@@ -3,6 +3,7 @@ const ContactAddress = require("../models/contactAddressModel");
 const ContactPerson = require("../models/contactPersonModel");
 
 const getAllClients = async (req, res) => {
+
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;

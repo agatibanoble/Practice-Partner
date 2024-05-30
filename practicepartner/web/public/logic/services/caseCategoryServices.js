@@ -69,7 +69,6 @@ class CaseCategoryServices {
         const action = id
           ? `casecategories/update/${id}`
           : "casecategories/create";
-        alert(id);
         const response = await fetch(endpointURL + action, {
           method: "POST",
           body: data,

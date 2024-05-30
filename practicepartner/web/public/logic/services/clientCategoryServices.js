@@ -69,7 +69,6 @@ class ClientCategoryServices {
         const action = id
           ? `clientcategories/update/${id}`
           : "clientcategories/create";
-        alert(id);
         const response = await fetch(endpointURL + action, {
           method: "POST",
           body: data,

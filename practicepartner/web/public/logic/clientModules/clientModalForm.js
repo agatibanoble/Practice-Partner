@@ -1,37 +1,38 @@
-import endpointURL from "../configModule.js";
-import ResponseHandlerModule from "../responseHandlerModule.js";
 import ClientCategoryServices from "../services/clientCategoryServices.js";
 import ClientServices from "../services/clientServices.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import { getEditorInstance } from "../helperModules/CKEditor.js";
-import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
+
 
 class ClientModalForm {
-  constructor(clientId = null) {
-    this.clientId = clientId;
-    this.editorInstance = null;
-    this.modal = $("#client-modal-form");
-    this.modalTitle = $("#modalTitle");
-    this.form = $("#frm-client");
-    this.initForm();
+  static modal = $("#client-modal-form");
+  static modalTitle = $("#modalTitle");
+  static form = $("#frm-client");
+  static editorInstance = null;
+
+  static async init() {
+    const clientCategories = await ClientCategoryServices.getClientCategories();
+    const selectElement = $("#client-category", this.form);
+
+    populateSelectWithOptions(selectElement, clientCategories, "_id", "clientCategoryName");
+    await this.initEditor("#frm-client #client-description-editor");
+    this.attachEventHandlers();
   }
 
-  async new() {
+  static async new() {
     await this.initEditor("#frm-client #client-description-editor");
     this.modalTitle.text("Add New Client");
     this.showModal();
   }
 
-  async open() {
+  static async open(clientId) {
     await this.initEditor("#frm-client #client-description-editor");
-    if (!this.clientId) {
+    if (!clientId) {
       alertify.notify("Please make a selection", "warning", 5);
       return;
     }
     try {
-      const selectedRecord = await ClientServices.getSelectedClient(
-        this.clientId
-      );
+      const selectedRecord = await ClientServices.getSelectedClient(clientId);
       this.populateFormFields(selectedRecord);
       this.modalTitle.text("Edit Selected Client");
       this.showModal();
@@ -40,11 +41,11 @@ class ClientModalForm {
     }
   }
 
-  async initEditor(selector) {
+  static async initEditor(selector) {
     this.editorInstance = await getEditorInstance(selector);
   }
 
-  async populateFormFields(selectedRecord) {
+  static async populateFormFields(selectedRecord) {
     if (selectedRecord) {
       const {
         clientNumber,
@@ -65,7 +66,7 @@ class ClientModalForm {
     }
   }
 
-  setEditorContent(content) {
+  static setEditorContent(content) {
     if (this.editorInstance?.setData) {
       this.editorInstance.setData(content || "");
     } else {
@@ -73,11 +74,11 @@ class ClientModalForm {
     }
   }
 
-  showModal() {
+  static showModal() {
     this.modal.css("display", "block").modal("show");
   }
 
-  attachEventHandlers() {
+  static attachEventHandlers() {
     this.form.on("submit", async (event) => {
       event.preventDefault();
       await this.handleFormSubmission($(event.currentTarget));
@@ -88,46 +89,28 @@ class ClientModalForm {
     });
   }
 
-  async initForm() {
-    const clientCategories = await ClientCategoryServices.getClientCategories();
-    const selectElement = $("#client-category", this.form);
-
-    populateSelectWithOptions(
-      selectElement,
-      clientCategories,
-      "_id",
-      "clientCategoryName"
-    );
-
-    await this.initEditor("#frm-client #client-description-editor");
-    this.attachEventHandlers();
-  }
-
-  async handleFormSubmission(form) {
+  static async handleFormSubmission(form) {
     const formData = new FormData(form[0]);
-    const data = removeEmptyFields(formData);
-    const id = formData.get("id");
-    const action = id ? `updateClient/${id}` : "createClient";
-    console.log(action);
     try {
-      const response = await fetch(endpointURL + action, {
-        method: "POST",
-        body: data,
-      });
-      const responseData = await response.json();
-      ResponseHandlerModule.handleResponse(responseData);
+      const responseData = await ClientServices.saveRecord(formData);
+      if (responseData && responseData.success)
+        this.populateFormFields(responseData.data);
     } catch (error) {
-      ResponseHandlerModule.handleError(error);
+      console.error("Error saving record:", error);
     }
   }
 
-  resetForm() {
+
+  static resetForm() {
     this.form[0].reset();
     this.form.find("input[type=hidden]").val("");
     this.setEditorContent("");
-    // this.editorInstance?.destroy();
-    this.editorInstance?.setData("");
   }
 }
 
 export default ClientModalForm;
+
+// Initialize the form when the script is loaded
+$(document).ready(() => {
+  ClientModalForm.init();
+});

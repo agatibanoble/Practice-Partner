@@ -37,7 +37,18 @@
                   </button>
                 </td>
               </tr>
-
+              <tr>
+                <th scope="row">Departments</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-department-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
               <tr>
                 <th scope="row">Countries</th>
                 <td class="text-center">
@@ -185,6 +196,7 @@
 ('../region-views/region-modal-page') %><%- include
 ('../client-category-views/client-category-modal-page') %><%- include
 ('../case-category-views/case-category-modal-page') %><%- include
-('../court-views/court-modal-page') %>
+('../court-views/court-modal-page') %><%- include
+('../department-views/department-modal-page') %>
 <script type="module" src="../logic/settings/settings.js"></script>
 <%- contentFor('FooterJs') %>

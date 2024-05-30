@@ -16,7 +16,7 @@ const ClientSchema = new mongoose.Schema(
       //required: [true, "Client Name is required"],
       trim: true,
       minlength: [2, "Client Name must be at least 2 characters"],
-      maxlength: [50, "Client Name cannot exceed 50 characters"],
+      // maxlength: [50, "Client Name cannot exceed 50 characters"],
     },
     clientDescription: {
       type: String,

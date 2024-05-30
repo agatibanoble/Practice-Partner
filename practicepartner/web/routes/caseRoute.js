@@ -7,7 +7,6 @@ const {
 } = require("../controllers/caseController");
 
 // Routes for handling case operations
-router.get("/listCases", renderCaseListPage);
-router.get("/manageCase/:id", renderCaseManagementPage);
+router.get("/cases", renderCaseListPage);
 
 module.exports = router;

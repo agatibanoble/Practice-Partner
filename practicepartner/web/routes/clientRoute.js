@@ -8,8 +8,7 @@ const {
 } = require("../controllers/clientController");
 
 // Routes for handling client operations
-router.get("/listClients", renderClientListPage);
-router.get("/manageClient/:id", renderClientManagementPage);
-router.get("/editClient/:id", renderEditClientPage);
+router.get("/clients", renderClientListPage);
+
 
 module.exports = router;

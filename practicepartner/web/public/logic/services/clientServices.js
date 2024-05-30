@@ -1,75 +1,31 @@
-// // clientServices.js
-// clientServices.js
+import ResponseHandlerModule from "../responseHandlerModule.js";
+import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import endpointURL from "../configModule.js";
-
+const endpoint = `${endpointURL}clients/`;
 // Function to initialize autocomplete for a given text input element
-
-const getClients = async (currentPage = 1, rowsPerPage = 10) => {
-  try {
-    const response = await $.ajax({
-      url: `${endpointURL}getClients`,
-      type: "GET",
-      data: { page: currentPage, limit: rowsPerPage },
-      contentType: "application/json",
+class ClientServices{
+static async getClients  (currentPage = 1, rowsPerPage = 10) {
+  
+  return new Promise((resolve, reject) => {
+      $.ajax({
+        url: `${endpoint}get`,
+        method: "GET",
+        data :{ page: currentPage, limit: rowsPerPage },
+        dataType: "json",
+        contentType: "application/json",
+        success: function (response) {
+          resolve(response);
+        },
+        error: function (xhr, status, error) {
+          reject(error);
+        },
+      });
     });
-
-    return response;
-  } catch (error) {
-    console.error("Error fetching clients:", error);
-    throw error;
-  }
+  
 };
 
-// Example usage:
-// getClients().then((response) => {
-//   // Handle the response
-// }).catch((error) => {
-//   // Handle errors
-// });
 
-// const searchClients = (textInputElement) => {
-//   return new Promise((resolve, reject) => {
-//     $(textInputElement).autocomplete({
-//       minLength: 1,
-//       source: function (req, response) {
-//         var activeElement = $(":focus").attr("id");
-
-//         $.ajax({
-//           url: endpointURL + "searchClients",
-//           method: "GET",
-//           data: {
-//             searchItem: req.term,
-//           },
-//           dataType: "json",
-//           success: function (res) {
-//             var result = [];
-//             if (res.data.length) {
-//               result = res.data.map(function (obj) {
-//                 return {
-//                   label: obj.clientNumber + ": " + obj.clientName,
-//                   value: obj.clientNumber + ": " + obj.clientName,
-//                   data: obj,
-//                 };
-//               });
-//             } else {
-//               result.push({
-//                 label: "There is no matching record found for " + req.term,
-//                 value: "",
-//               });
-//             }
-//             response(result);
-//           },
-//         });
-//       },
-//       select: function (event, ui) {
-//         var data = ui.item.data;
-//         // resolve(data);
-//         textInputElement.data("selectedData", data); // Store selected data in a data attribute
-//       },
-//     });
-//   });
-// };
-const searchClients = (textInputElement) => {
+static searchClients (textInputElement) {
   return new Promise((resolve, reject) => {
     $(textInputElement).autocomplete({
       minLength: 1,
@@ -82,7 +38,7 @@ const searchClients = (textInputElement) => {
 
         // Make an AJAX request to fetch autocomplete suggestions
         $.ajax({
-          url: `${endpointURL}searchClients`,
+          url: `${endpoint}search`,
           method: "GET",
           data: { searchItem: searchTerm },
           dataType: "json",
@@ -123,10 +79,10 @@ const searchClients = (textInputElement) => {
   });
 };
 
-const getSelectedClient = (clientId) => {
+static getSelectedClient (clientId) {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: endpointURL + "getClient/" + clientId, // Use the provided clientId parameter
+      url: `${endpoint}get/${clientId}`, // Use the provided clientId parameter
       type: "GET",
       data: { id: clientId }, // Use the provided clientId parameter
       success: (response) => {
@@ -140,6 +96,68 @@ const getSelectedClient = (clientId) => {
   });
 };
 
+  static async saveRecord(formData) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = removeEmptyFields(formData);
+        const id = data.get("id");
+        const action = id
+          ? `update/${id}`
+          : "create";
+        const response = await fetch(endpoint + action, {
+          method: "POST",
+          body: data,
+        });
+        const responseData = await response.json();
+        ResponseHandlerModule.handleResponse(responseData);
+        resolve(responseData);
+      } catch (error) {
+        ResponseHandlerModule.handleError(error);
+        reject(error);
+      }
+    });
+  }
+
+static async deleteRecord (clientId)  {
+  try {
+    // Show confirmation prompt
+    const confirmation = await new Promise((resolve) => {
+      alertify.confirm(
+        "Confirmation",
+        "Are you sure you want to delete this record?",
+        resolve,
+        () => {} // Empty function for Cancel
+      );
+    });
+
+    // Check if user confirmed deletion
+    if (confirmation) {
+      const response = await fetch(`${endpoint}delete/${clientId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        alertify.notify("Record deleted successfully", "success", 5);
+
+        return true; // Deletion successful
+      } else {
+        throw new Error("Error deleting record");
+      }
+    } else {
+      // User clicked Cancel
+      alertify.notify("Deletion canceled by user", "info", 5);
+      return false; // Deletion canceled
+    }
+  } catch (error) {
+    // Handle error
+    alertify.notify(error.message || "Error deleting record", "warning", 5);
+    return false; // Deletion failed
+  }
+};
+}
 // Expose the searchClients function for external use
-const ClientServices = { getClients, searchClients, getSelectedClient };
+// const ClientServices = { getClients, searchClients, getSelectedClient,deleteRecord };
 export default ClientServices;

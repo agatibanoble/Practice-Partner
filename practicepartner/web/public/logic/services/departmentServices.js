@@ -4,11 +4,11 @@ import endpointURL from "../configModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import ResponseHandlerModule from "../responseHandlerModule.js";
-class CourtServices {
-  static async getCourts() {
+class DeapartmentServices {
+  static async getDepartments() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpointURL}courts/get`,
+        url: `${endpointURL}departments/get`,
         method: "GET",
         dataType: "json",
         success: function (response) {
@@ -21,12 +21,12 @@ class CourtServices {
     });
   }
 
-  static async getSelectedRecord(courtId) {
+  static async getSelectedRecord(departmentId) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: endpointURL + "courts/get/" + courtId, // Use the provided clientId parameter
+        url: `${endpointURL}departments/get/${departmentId}`, // Use the provided clientId parameter
         type: "GET",
-        // data: { id: courtId }, // Use the provided clientId parameter
+        // data: { id: departmentId }, // Use the provided clientId parameter
         success: (response) => {
           resolve(response.data);
         },
@@ -38,12 +38,37 @@ class CourtServices {
     });
   }
 
+  static async populateClientCategories(selectElement) {
+    if (!countryId) return;
+    try {
+      const response = await fetch(`${endpointURL}departments/get`, {
+        method: "GET",
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Error fetching Contact Person data: ${response.statusText}`
+        );
+      }
+      const caseCategories = await response.json();
+      populateSelectWithOptions(
+        selectElement,
+        caseCategories.data,
+        "_id",
+        "departmentName"
+      );
+    } catch (error) {
+      console.error("Error fetching regions:", error);
+    }
+  }
+
   static async saveRecord(formData) {
     return new Promise(async (resolve, reject) => {
       try {
         const data = removeEmptyFields(formData);
         const id = data.get("id");
-        const action = id ? `courts/update/${id}` : "courts/create";
+        const action = id
+          ? `departments/update/${id}`
+          : "departments/create";
         const response = await fetch(endpointURL + action, {
           method: "POST",
           body: data,
@@ -58,7 +83,7 @@ class CourtServices {
     });
   }
 
-  static async deleteRecord(courtId) {
+  static async deleteRecord(departmentId) {
     try {
       // Show confirmation prompt
       const confirmation = await new Promise((resolve) => {
@@ -72,12 +97,15 @@ class CourtServices {
 
       // Check if user confirmed deletion
       if (confirmation) {
-        const response = await fetch(`${endpointURL}courts/delete/${courtId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${endpointURL}departments/delete/${departmentId}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           alertify.notify("Record deleted successfully", "success", 5);
@@ -99,4 +127,4 @@ class CourtServices {
   }
 }
 
-export default CourtServices;
+export default DeapartmentServices;

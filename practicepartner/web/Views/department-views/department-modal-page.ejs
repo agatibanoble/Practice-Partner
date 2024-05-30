@@ -1,0 +1,65 @@
+<div
+  id="department-modal-page"
+  class="modal fade"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="department-modal-page-modalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="department-modal-page-modalTitle"></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 text-end mb-1">
+            <a href="#" class="btn btn-light btn-xs" id="btn-new-department">
+              <i class="bx bx-plus me-1"></i> Add New
+            </a>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table
+            class="table align-middle table-nowrap table-check"
+            id="departmentTable"
+          >
+            <thead class="table-light">
+              <tr>
+                <th style="width: 20px" class="align-middle">#</th>
+                <th class="sortable align-middle" data-column="department">
+                  <a href="javascript:void(0);" class="text-primary"
+                    >Department</a
+                  >
+                </th>
+                <th style="text-align: right">
+                  <div class="d-flex justify-content-end gap-3">Action</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="departmentTableBody"></tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary waves-effect"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ('./department-modal-form') %>
+</div>

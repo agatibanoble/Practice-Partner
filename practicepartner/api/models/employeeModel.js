@@ -9,23 +9,21 @@ const employeeSchema = new mongoose.Schema({
   },
   firstName: {
     type: String,
-    required: [true, "Employee Name is required"],
+    required: [true, "Employee First Name is required"],
     trim: true,
-    minlength: [2, "Employee Name must be at least 2 characters"],
-    maxlength: [50, "Employee Name cannot exceed 50 characters"],
+    minlength: [2, "Employee First Name must be at least 2 characters"],
+    maxlength: [50, "Employee First Name cannot exceed 50 characters"],
   },
   middleName: {
     type: String,
     trim: true,
-    minlength: [2, "Employee Name must be at least 2 characters"],
-    maxlength: [50, "Employee Name cannot exceed 50 characters"],
   },
   lastName: {
     type: String,
-    required: [true, "Employee Name is required"],
+    required: [true, "Employee Last Name is required"],
     trim: true,
-    minlength: [2, "Employee Name must be at least 2 characters"],
-    maxlength: [50, "Employee Name cannot exceed 50 characters"],
+    minlength: [2, "Employee Last Name must be at least 2 characters"],
+    maxlength: [50, "Employee Last Name cannot exceed 50 characters"],
   },
   employeeEmail: {
     type: String,
@@ -37,8 +35,14 @@ const employeeSchema = new mongoose.Schema({
     required: true
   },
   employeeDepartment: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref : "Department",
+    required: false
+  },
+  employeeCategory: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref : "EmployeeCategory",
+    required: false
   },
   employeePosition: {
     type: String,

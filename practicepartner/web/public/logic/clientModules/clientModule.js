@@ -9,6 +9,7 @@ const ClientModule = (() => {
 
   // Function to get client ID from URL
   const getClientIdFromUrl = () => {
+    alert("clientModule here")
     const currentUrl = window.location.href;
     const urlParts = currentUrl.split("/");
     return urlParts[4];
