@@ -92,30 +92,7 @@ const getContactPersonById = async (req, res) => {
   }
 };
 
-// const getContactPersonById = async (req, res) => {
-//   try {
-//     const contactPerson = await ContactPerson.findById(req.params.id);
 
-//     if (!contactPerson) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "Contact Person not found",
-//       });
-//     }
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Contact Person retrieved successfully",
-//       data: contactPerson,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Failed to fetch Contact Person",
-//       error: error.message,
-//     });
-//   }
-// };
 
 const updateContactPersonById = async (req, res) => {
   try {
