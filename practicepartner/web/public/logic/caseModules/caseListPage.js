@@ -1,8 +1,6 @@
 import { formatDate } from "../helperModules/dateFormater.js";
-import endpointURL from "../configModule.js";
 import CaseModalForm from "./caseModalForm.js";
 import CaseServices from "../services/caseServices.js";
-import checkField from "../helperModules/checkField.js";
 
 class CaseManager {
   constructor() {

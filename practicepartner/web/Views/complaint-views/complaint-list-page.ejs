@@ -27,7 +27,7 @@
                   <li class="nav-item">
                     <a
                       class="nav-link active"
-                      href="/listEmployees"
+                      href="/listComplaints"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="List"
@@ -49,7 +49,7 @@
                 </ul>
               </div>
               <div>
-                <a href="#" class="btn btn-light" id="btn-new-employee">
+                <a href="#" class="btn btn-light" id="btn-new-complaint">
                   <i class="bx bx-plus me-1"></i> Add New
                 </a>
               </div>
@@ -91,21 +91,18 @@
                     <label class="form-check-label" for="checkAll"></label>
                   </div>
                 </th>
-                <th class="align-middle">Employee Number</th>
-                <th class="align-middle">First Name</th>
-                <th class="align-middle">Middle Name</th>
-                <th class="align-middle">Last Name</th>
-                <th class="align-middle">Department</th>
-                <th class="align-middle">Position</th>
-                <th class="align-middle">Category</th>
-                <th class="align-middle">Date of Joining</th>
-                <th class="align-middle">Date of Birth</th>
+                <th class="align-middle">Complaint Number</th>
+                <th class="align-middle">Complaint Title</th>
+                <th class="align-middle">Complaint Description</th>
+                <th class="align-middle">Filed By</th>
+                <th class="align-middle">Date Filed</th>
+                <th class="align-middle">Status</th>
                 <th class="align-middle">Action</th>
               </tr>
             </thead>
-            <tbody id="employeeTableBody">
+            <tbody id="complaintTableBody">
               <tr>
-                <td colspan="11" class="text-center">Loading...</td>
+                <td colspan="8" class="text-center">Loading...</td>
               </tr>
             </tbody>
           </table>
@@ -121,11 +118,11 @@
 </div>
 
 <!-- Modal -->
-<%- include ('./employee-modal-form') %>
+<%- include('./complaint-modal-form') %>
 <!-- end modal -->
 
 <script
   type="module"
-  src="../logic/employeeModules/employeeListPage.js"
+  src="../logic/complaintModules/complaintListPage.js"
 ></script>
 <%- contentFor('FooterJs') %>

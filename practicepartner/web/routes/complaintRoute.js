@@ -1,9 +1,11 @@
 // app.js
 const express = require("express");
 const router = express.Router();
-const { renderEmployeeListPage } = require("../controllers/employeeController");
+const {
+  renderComplaintListPage,
+} = require("../controllers/complaintController");
 
 // Routes for handling client operations
-router.get("/", renderEmployeeListPage);
+router.get("/", renderComplaintListPage);
 
 module.exports = router;

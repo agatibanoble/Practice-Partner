@@ -1,0 +1,173 @@
+<div
+  class="modal fade"
+  id="complaint-modal-form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalTitle"
+  aria-hidden="true"
+>
+  <form
+    class="needs-validation"
+    id="frm-complaint"
+    method="post"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog modal-xl"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Add/Edit Complaint</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Complaint Details</h4>
+                  <p class="card-title-desc">
+                    Provide details of the complaint.
+                  </p>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="complaint-number"
+                          >Complaint Number</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="complaint-number"
+                          name="complaintNumber"
+                          placeholder="Complaint Number"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="complaint-title"
+                          >Title</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="complaint-title"
+                          name="complaintTitle"
+                          placeholder="Title"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="complaint-filed-by"
+                          >Filed By</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="complaint-filed-by"
+                          name="complaintFiledBy"
+                          placeholder="Filed By"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label" for="complaint-date-filed"
+                          >Date Filed</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="complaint-date-filed"
+                          name="complaintDateFiled"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label" for="complaint-status"
+                          >Status</label
+                        >
+                        <select
+                          class="form-control form-select"
+                          id="complaint-status"
+                          name="complaintStatus"
+                          required
+                        >
+                          <option value="">Select Status</option>
+                          <option value="Open">Open</option>
+                          <option value="In Progress">In Progress</option>
+                          <option value="Closed">Closed</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label" for="complaint-description"
+                          >Description</label
+                        >
+                        <textarea
+                          id="complaint-description-editor"
+                          name="complaintDescription"
+                          class="form-control"
+                          placeholder="Provide a detailed description"
+                          required
+                        ></textarea>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end card -->
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-lg-12">
+              <input type="hidden" name="id" id="_id" />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" id="saveButton" class="btn btn-primary">
+                Save <i class="fab fa-telegram-plane ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

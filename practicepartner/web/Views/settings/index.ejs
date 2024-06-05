@@ -102,6 +102,32 @@
               </tr>
 
               <tr>
+                <th scope="row">Employee Category</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-employee-category-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">Employee Positions</th>
+                <td class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm waves-effect waves-light"
+                    id="btn-employee-position-modal-page"
+                  >
+                    Click me
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
                 <th scope="row">Courts</th>
                 <td class="text-center">
                   <button
@@ -197,6 +223,8 @@
 ('../client-category-views/client-category-modal-page') %><%- include
 ('../case-category-views/case-category-modal-page') %><%- include
 ('../court-views/court-modal-page') %><%- include
-('../department-views/department-modal-page') %>
+('../department-views/department-modal-page') %><%- include
+('../employee-category-views/employee-category-modal-page') %><%- include
+('../employee-position-views/employee-position-modal-page') %>
 <script type="module" src="../logic/settings/settings.js"></script>
 <%- contentFor('FooterJs') %>
