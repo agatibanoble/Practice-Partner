@@ -1,18 +1,16 @@
-// Courts.js
-
 import endpointURL from "../configModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import ResponseHandlerModule from "../responseHandlerModule.js";
-class DeapartmentServices {
-  static async getDepartments() {
+
+class EmployeePositionServices {
+  static async getEmployeePositions() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpointURL}departments/get`,
+        url: `${endpointURL}employeepositions/get`,
         method: "GET",
         dataType: "json",
         success: function (response) {
-          console.log(response);
           resolve(response.data);
         },
         error: function (xhr, status, error) {
@@ -22,45 +20,41 @@ class DeapartmentServices {
     });
   }
 
-  static async getSelectedRecord(departmentId) {
+  static async getSelectedEmployeePosition(positionId) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpointURL}departments/get/${departmentId}`, // Use the provided clientId parameter
+        url: `${endpointURL}employeepositions/get/${positionId}`,
         type: "GET",
-        // data: { id: departmentId }, // Use the provided clientId parameter
         success: (response) => {
           resolve(response.data);
         },
         error: (xhr, status, error) => {
-          console.error("Error fetching case category data:", error);
+          console.error("Error fetching position data:", error);
           reject(error);
         },
       });
     });
   }
 
-  static async populateDepartments(selectElement) {
-    alert(selectElement);
-    if (!selectElement) return;
+  static async populateEmployeePositions(selectElement) {
     try {
-      const response = await fetch(`${endpointURL}departments/get`, {
+      const response = await fetch(`${endpointURL}employeepositions/get`, {
         method: "GET",
       });
       if (!response.ok) {
         throw new Error(
-          `Error fetching Contact Person data: ${response.statusText}`
+          `Error fetching employee positions data: ${response.statusText}`
         );
       }
-      const departments = await response.json();
-      console.log(departments);
+      const employeepositions = await response.json();
       populateSelectWithOptions(
         selectElement,
-        departments.data,
+        employeepositions.data,
         "_id",
-        "departmentName"
+        "employeePositionName"
       );
     } catch (error) {
-      console.error("Error fetching regions:", error);
+      console.error("Error fetching employeepositions:", error);
     }
   }
 
@@ -69,7 +63,9 @@ class DeapartmentServices {
       try {
         const data = removeEmptyFields(formData);
         const id = data.get("id");
-        const action = id ? `departments/update/${id}` : "departments/create";
+        const action = id
+          ? `employeepositions/update/${id}`
+          : "employeepositions/create";
         const response = await fetch(endpointURL + action, {
           method: "POST",
           body: data,
@@ -84,22 +80,20 @@ class DeapartmentServices {
     });
   }
 
-  static async deleteRecord(departmentId) {
+  static async deleteRecord(positionId) {
     try {
-      // Show confirmation prompt
       const confirmation = await new Promise((resolve) => {
         alertify.confirm(
           "Confirmation",
-          "Are you sure you want to delete this record?",
+          "Are you sure you want to delete this position?",
           resolve,
           () => {} // Empty function for Cancel
         );
       });
 
-      // Check if user confirmed deletion
       if (confirmation) {
         const response = await fetch(
-          `${endpointURL}departments/delete/${departmentId}`,
+          `${endpointURL}employeepositions/delete/${positionId}`,
           {
             method: "DELETE",
             headers: {
@@ -109,23 +103,24 @@ class DeapartmentServices {
         );
 
         if (response.ok) {
-          alertify.notify("Record deleted successfully", "success", 5);
-
-          return true; // Deletion successful
+          alertify.notify(
+            "Employee Position deleted successfully",
+            "success",
+            5
+          );
+          return true;
         } else {
-          throw new Error("Error deleting record");
+          throw new Error("Error deleting position");
         }
       } else {
-        // User clicked Cancel
         alertify.notify("Deletion canceled by user", "info", 5);
-        return false; // Deletion canceled
+        return false;
       }
     } catch (error) {
-      // Handle error
-      alertify.notify(error.message || "Error deleting record", "warning", 5);
-      return false; // Deletion failed
+      alertify.notify(error.message || "Error deleting position", "warning", 5);
+      return false;
     }
   }
 }
 
-export default DeapartmentServices;
+export default EmployeePositionServices;

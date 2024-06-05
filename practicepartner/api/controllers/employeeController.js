@@ -26,19 +26,39 @@ const createEmployee = async (req, res) => {
 // Get all employees
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find();
-    res.status(200).json({
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const searchTerm = req.query.searchTerm || "";
+
+    const startIndex = (page - 1) * limit;
+    const regex = new RegExp(searchTerm, "i");
+    const query = { firstName: { $regex: regex } }; // Assuming employeeName field for search
+
+    const totalCount = await Employee.countDocuments(query);
+    const employees = await Employee.find()
+      .populate("employeeDepartment")
+      .populate("employeePosition")
+      .populate("employeeCategory")
+      .limit(limit)
+      .skip(startIndex);
+
+    const pagination = {
+      currentPage: page,
+      totalPages: Math.ceil(totalCount / limit),
+    };
+
+    const successResponse = {
       success: true,
       message: "Employees retrieved successfully",
+      count: employees.length,
+      pagination: pagination,
       data: employees,
-      error: null,
-    });
+    };
+    res.status(200).json(successResponse);
   } catch (error) {
-    console.error("Error getting employees:", error);
     res.status(500).json({
       success: false,
-      message: "Failed to retrieve employees",
-      data: null,
+      message: "Error retrieving employees",
       error: error.message,
     });
   }
@@ -136,7 +156,7 @@ const deleteEmployeeById = async (req, res) => {
 };
 
 // Export all functions
-module.exports = {    
+module.exports = {
   createEmployee,
   getAllEmployees,
   getEmployeeById,

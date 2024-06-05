@@ -11,10 +11,10 @@ const upload = require("express-fileupload");
 
 const ClientRoutes = require("./routes/clientRoute");
 const CaseRoutes = require("./routes/caseRoute");
-const RegionRoutes = require("./routes/regionRoute");
-const CountryRoutes = require("./routes/countryRoute");
 const VisitRoutes = require("./routes/visitRoute");
 const SettingRoutes = require("./routes/settingRoute");
+const EmployeeRoutes = require("./routes/employeeRoute");
+const ComplaintRoutes = require("./routes/complaintRoute");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "Views"));
 app.use(upload());
@@ -40,10 +40,11 @@ app.use("/", authroute);
 app.use("/", route);
 app.use("/", ClientRoutes);
 app.use("/", CaseRoutes);
-app.use("/", RegionRoutes);
-app.use("/", CountryRoutes);
 app.use("/", VisitRoutes);
 app.use("/", SettingRoutes);
+app.use("/employees", EmployeeRoutes);
+app.use("/complaints", ComplaintRoutes);
+
 app.use((err, req, res, next) => {
   let error = { ...err };
   if (error.name === "JsonWebTokenError") {

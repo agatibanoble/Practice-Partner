@@ -5,10 +5,10 @@ import FirmPage from "../firmModules/firmListPage.js";
 import RegionListPage from "../regionModules/regionListPage.js";
 import CourtListPage from "../courtModules/courtListPage.js";
 import DepartmentListPage from "../departmentModules/departmentListPage.js";
+import EmployeeCategoryListPage from "../employeeCategoryModules/employeeCategoryListPage.js";
+import EmployeePositionListPage from "../employeePositionModules/employeePositionListPage.js";
 class Settings {
   constructor() {
-    // this.countryModalPage = $("#country-modal-page");
-    // this.modalTitle = $("#country-modal-page-modalTitle");
     this.initForm();
   }
 
@@ -23,7 +23,15 @@ class Settings {
       new CaseCategoryListPage().open()
     );
     $("#btn-court-modal-page").click(() => new CourtListPage().open());
-     $("#btn-department-modal-page").click(() => new DepartmentListPage().open());
+    $("#btn-department-modal-page").click(() =>
+      new DepartmentListPage().open()
+    );
+    $("#btn-employee-category-modal-page").click(() =>
+      new EmployeeCategoryListPage().open()
+    );
+    $("#btn-employee-position-modal-page").click(() =>
+      new EmployeePositionListPage().open()
+    );
   };
 
   initForm() {
