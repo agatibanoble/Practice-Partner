@@ -4,14 +4,15 @@ import endpointURL from "../configModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import ResponseHandlerModule from "../responseHandlerModule.js";
-class ClientCategoryServices {
-  static async getClientCategories() {
+class DocumentTypeServices {
+  static async getDocumentTypes() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpointURL}clientcategories/get`,
+        url: `${endpointURL}documenttypes/get`,
         method: "GET",
         dataType: "json",
         success: function (response) {
+          console.log(response);
           resolve(response.data);
         },
         error: function (xhr, status, error) {
@@ -21,27 +22,27 @@ class ClientCategoryServices {
     });
   }
 
-  static async getSelectedRecord(clientCategoryId) {
+  static async getSelectedRecord(documentTypeId) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: endpointURL + "clientcategories/get/" + clientCategoryId, // Use the provided clientId parameter
+        url: `${endpointURL}documenttypes/get/${documentTypeId}`, // Use the provided clientId parameter
         type: "GET",
-        // data: { id: clientCategoryId }, // Use the provided clientId parameter
+        // data: { id: documentTypeId }, // Use the provided clientId parameter
         success: (response) => {
           resolve(response.data);
         },
         error: (xhr, status, error) => {
-          console.error("Error fetching client address data:", error);
+          console.error("Error fetching document type data:", error);
           reject(error);
         },
       });
     });
   }
 
-  static async populateClientCategories(selectElement) {
+  static async populateDocumenttypes(selectElement) {
     if (!selectElement) return;
     try {
-      const response = await fetch(`${endpointURL}clientcategories/get`, {
+      const response = await fetch(`${endpointURL}documenttypes/get`, {
         method: "GET",
       });
       if (!response.ok) {
@@ -49,12 +50,13 @@ class ClientCategoryServices {
           `Error fetching Contact Person data: ${response.statusText}`
         );
       }
-      const clientCategories = await response.json();
+      const documenttypes = await response.json();
+      console.log(documenttypes);
       populateSelectWithOptions(
         selectElement,
-        clientCategories.data,
+        documenttypes.data,
         "_id",
-        "clientCategoryName"
+        "documentTypeName"
       );
     } catch (error) {
       console.error("Error fetching regions:", error);
@@ -67,8 +69,8 @@ class ClientCategoryServices {
         const data = removeEmptyFields(formData);
         const id = data.get("id");
         const action = id
-          ? `clientcategories/update/${id}`
-          : "clientcategories/create";
+          ? `documenttypes/update/${id}`
+          : "documenttypes/create";
         const response = await fetch(endpointURL + action, {
           method: "POST",
           body: data,
@@ -83,7 +85,7 @@ class ClientCategoryServices {
     });
   }
 
-  static async deleteRecord(clientCategoryId) {
+  static async deleteRecord(documentTypeId) {
     try {
       // Show confirmation prompt
       const confirmation = await new Promise((resolve) => {
@@ -98,7 +100,7 @@ class ClientCategoryServices {
       // Check if user confirmed deletion
       if (confirmation) {
         const response = await fetch(
-          `${endpointURL}clientcategories/delete/${clientCategoryId}`,
+          `${endpointURL}documenttypes/delete/${documentTypeId}`,
           {
             method: "DELETE",
             headers: {
@@ -127,4 +129,4 @@ class ClientCategoryServices {
   }
 }
 
-export default ClientCategoryServices;
+export default DocumentTypeServices;

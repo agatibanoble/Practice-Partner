@@ -2,7 +2,6 @@ import DepartmentServices from "../services/departmentServices.js";
 import employeePositionServices from "../services/employeePositionServices.js";
 import EmployeeCategoryServices from "../../logic/services/employeeCategoryServices.js";
 import EmployeeServices from "../services/employeeServices.js";
-
 class EmployeeModalForm {
   static instance = null; // Static property to hold the single instance
 
@@ -21,7 +20,7 @@ class EmployeeModalForm {
 
     // Attach event handlers
     this.attachEventHandlers();
-    this.initForm();
+    this.initFormPromise = this.initForm();
   }
 
   // Static method to get the instance of the class
@@ -45,6 +44,7 @@ class EmployeeModalForm {
   }
 
   async new() {
+    await this.initFormPromise; // Ensure the form is initialized before showing the modal
     this.modalTitle.text("Add New Employee");
     this.showModal();
   }
@@ -55,6 +55,7 @@ class EmployeeModalForm {
       return;
     }
     try {
+      await this.initFormPromise; // Ensure the form is initialized before populating fields
       const selectedRecord = await EmployeeServices.getSelectedEmployee(
         employeeId
       );
@@ -69,31 +70,54 @@ class EmployeeModalForm {
   populateFormFields(selectedRecord) {
     if (selectedRecord) {
       $("#employee-number", this.form).val(selectedRecord.employeeNumber);
-      $("#employee-firstname", this.form).val(selectedRecord.firstName);
-      $("#employee-middlename", this.form).val(selectedRecord.middleName);
-      $("#employee-lastname", this.form).val(selectedRecord.lastName);
+      $("#employee-firstname", this.form).val(selectedRecord.employeeFirstName);
+      $("#employee-middlename", this.form).val(
+        selectedRecord.employeeMiddleName
+      );
+      $("#employee-lastname", this.form).val(selectedRecord.employeeLastName);
       $("#employee-department", this.form).val(
-        selectedRecord.department ? selectedRecord.employeeDepartment._id : ""
+        selectedRecord.department ? selectedRecord.employeeDepartment : ""
       );
       $("#employee-position", this.form).val(
-        selectedRecord.position ? selectedRecord.employeePosition._id : ""
+        selectedRecord.employeePosition ? selectedRecord.employeePosition : ""
       );
-      $("#employee-category", this.form).val(
-        selectedRecord.employeeCategory
-          ? selectedRecord.employeeCategory._id
+      $("#employee-status", this.form).val(
+        selectedRecord.employeeStatus ? selectedRecord.employeeStatus : ""
+      );
+      $("#employee-gender", this.form).val(
+        selectedRecord.employeeGender ? selectedRecord.employeeGender : ""
+      );
+      $("#employee-email", this.form).val(
+        selectedRecord.employeeEmail ? selectedRecord.employeeEmail : ""
+      );
+      $("#employee-phone", this.form).val(
+        selectedRecord.employeePhone ? selectedRecord.employeePhone : ""
+      );
+      $("#employee-department", this.form).val(
+        selectedRecord.employeeDepartment
+          ? selectedRecord.employeeDepartment
           : ""
       );
+      $("#employee-category", this.form).val(
+        selectedRecord.employeeCategory ? selectedRecord.employeeCategory : ""
+      );
       $("#employee-hire-date", this.form).val(
-        selectedRecord.dateOfJoining ? selectedRecord.hireDate : ""
+        selectedRecord.employeeHireDate ? selectedRecord.employeeHireDate : ""
       );
       $("#employee-date-of-birth", this.form).val(
-        selectedRecord.dateOfBirth ? selectedRecord.dateOfBirth : ""
+        selectedRecord.employeeDateOfBirth
+          ? selectedRecord.employeeDateOfBirth
+          : ""
+      );
+      $("#employee-address", this.form).val(
+        selectedRecord.employeeAddress ? selectedRecord.employeeAddress : ""
       );
       $("#employee-description", this.form).val(
-        selectedRecord.dateOfBirth ? selectedRecord.employeeDescription : ""
+        selectedRecord.employeeDescription
+          ? selectedRecord.employeeDescription
+          : ""
       );
       $("#_id", this.form).val(selectedRecord._id);
-      this.setEditorContent(selectedRecord.employeeDetails);
     }
   }
 

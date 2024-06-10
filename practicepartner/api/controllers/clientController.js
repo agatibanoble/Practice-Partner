@@ -3,7 +3,6 @@ const ContactAddress = require("../models/contactAddressModel");
 const ContactPerson = require("../models/contactPersonModel");
 
 const getAllClients = async (req, res) => {
-
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -68,10 +67,26 @@ const searchClients = async (req, res) => {
 const getClientById = async (req, res) => {
   try {
     const client = await Client.findById(req.params.id)
-      .populate("clientCategory")
-      .populate("contactAddresses")
-      .populate("contactPersons")
-      .populate("cases");
+      .populate({
+        path: "clientCategory",
+        model: "ClientCategory",
+        options: { strictPopulate: false },
+      })
+      .populate({
+        path: "contactAddresses",
+        model: "ContactAddress",
+        options: { strictPopulate: false }, // Set strictPopulate to false
+      })
+      .populate({
+        path: "contactPersons",
+        model: "ContactPerson",
+        options: { strictPopulate: false },
+      })
+      .populate({
+        path: "cases",
+        model: "Case",
+        options: { strictPopulate: false },
+      });
 
     if (!client) {
       return res.status(404).json({

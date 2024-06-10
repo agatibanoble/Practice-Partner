@@ -1,10 +1,10 @@
 import ResponseHandlerModule from "../responseHandlerModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import endpointURL from "../configModule.js";
-const endpoint = `${endpointURL}employees/`;
+const endpoint = `${endpointURL}dispatch/`;
 
-class EmployeeServices {
-  static async getEmployees(currentPage = 1, rowsPerPage = 10) {
+class DispatchServices {
+  static async getDispatch(currentPage = 1, rowsPerPage = 10) {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${endpoint}get`,
@@ -22,7 +22,7 @@ class EmployeeServices {
     });
   }
 
-  static searchEmployees(textInputElement) {
+  static searchDispatch(textInputElement) {
     return new Promise((resolve, reject) => {
       $(textInputElement).autocomplete({
         minLength: 1,
@@ -41,8 +41,8 @@ class EmployeeServices {
             success: function (res) {
               if (res.data && res.data.length > 0) {
                 const formattedResults = res.data.map((obj) => ({
-                  label: `${obj.employeeNumber}: ${obj.firstName} ${obj.lastName}`,
-                  value: `${obj.employeeNumber}: ${obj.firstName} ${obj.lastName}`,
+                  label: `${obj.dispatchNumber}`,
+                  value: `${obj.dispatchNumber}`,
                   data: obj,
                 }));
                 response(formattedResults);
@@ -63,26 +63,26 @@ class EmployeeServices {
         select: function (event, ui) {
           const selectedData = ui.item.data;
           $(textInputElement).data("selectedData", selectedData);
-          $("#employee-category").val(selectedData.employeeCategory || "");
-          $("#employee-type").val(selectedData.employeeType || "");
-          $("#employee-id").val(selectedData._id || "");
+          //   $("#Dispatch-category").val(selectedData.DispatchCategory || "");
+          //   $("#Dispatch-type").val(selectedData.DispatchType || "");
+          //   $("#Dispatch-id").val(selectedData._id || "");
           resolve(selectedData);
         },
       });
     });
   }
 
-  static getSelectedEmployee(employeeId) {
+  static getSelectedDispatch(DispatchId) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpoint}get/${employeeId}`,
+        url: `${endpoint}get/${DispatchId}`,
         type: "GET",
-        data: { id: employeeId },
+        data: { id: DispatchId },
         success: (response) => {
           resolve(response.data);
         },
         error: (xhr, status, error) => {
-          console.error("Error fetching employee data:", error);
+          console.error("Error fetching Dispatch data:", error);
           reject(error);
         },
       });
@@ -109,7 +109,7 @@ class EmployeeServices {
     });
   }
 
-  static async deleteRecord(employeeId) {
+  static async deleteRecord(DispatchId) {
     try {
       const confirmation = await new Promise((resolve) => {
         alertify.confirm(
@@ -121,7 +121,7 @@ class EmployeeServices {
       });
 
       if (confirmation) {
-        const response = await fetch(`${endpoint}delete/${employeeId}`, {
+        const response = await fetch(`${endpoint}delete/${DispatchId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -145,4 +145,4 @@ class EmployeeServices {
   }
 }
 
-export default EmployeeServices;
+export default DispatchServices;

@@ -1,0 +1,147 @@
+<div
+  id="dispatch-detail-modal"
+  class="modal fade"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dispatch-detail-modalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dispatch-detail-modalTitle">
+          Document Dispatch Details
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-md-6">
+                    <div class="search-box me-2 mb-2 d-inline-block">
+                      <div class="position-relative">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Search..."
+                        />
+                        <i class="bx bx-search-alt search-icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3"
+                    >
+                      <div>
+                        <a href="#" class="btn btn-light" id="btn-edit-dispatch"
+                          ><i class="mdi mdi-pencil me-1"></i> Edit Dispatch</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dispatch Details -->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="email-leftbar card fixed-menu">
+                      <div class="mail-list mt-4">
+                        <a href="#detailSection" class="scroll-link active"
+                          ><i class="mdi mdi-email-outline me-2"></i> Details
+                          <span class="ms-1 float-end"></span
+                        ></a>
+                        <!-- Add other sections as needed -->
+                      </div>
+                    </div>
+                    <div class="email-rightbar mb-0 content-area">
+                      <div class="card">
+                        <div class="card-body">
+                          <section id="detailSection" class="target-section">
+                            <div class="container mt-0">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <!-- Document Image or Icon -->
+                                  <img
+                                    src="https://via.placeholder.com/300"
+                                    alt="Document Image"
+                                    class="img-fluid mb-3 dispatch-image"
+                                  />
+                                </div>
+                                <div class="col-md-8">
+                                  <!-- Dispatch Information -->
+                                  <h4 class="document-id"></h4>
+                                  <p class="document-type"></p>
+                                  <p class="client-name"></p>
+                                  <p class="document-status"></p>
+                                  <p class="dispatch-date"></p>
+                                  <p class="received-date"></p>
+                                </div>
+                                <div class="col-md-8">
+                                  <hr />
+                                  <!-- Additional Information -->
+                                  <h5>About</h5>
+                                  <div class="container mt-0">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="row">
+                                          <div
+                                            class="col-md-12 d-flex justify-content-begin align-items-center"
+                                          ></div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <p class="document-description"></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <hr />
+                                  <!-- Uploaded Document -->
+                                  <h5>Uploaded Document</h5>
+                                  <a
+                                    href="#"
+                                    class="btn btn-primary"
+                                    id="btn-view-document"
+                                    >View Document</a
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Dispatch Details -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger waves-effect"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -28,12 +28,12 @@ const employeeSchema = new mongoose.Schema(
     },
     employeeEmail: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
     },
     employeePhone: {
       type: String,
-      required: true,
+      required: false,
     },
     employeeDepartment: {
       type: mongoose.Schema.Types.ObjectId,
@@ -52,25 +52,25 @@ const employeeSchema = new mongoose.Schema(
     },
     employeeStatus: {
       type: String,
-      required: true,
+      required: false,
       enum: ["Full-time", "Part-time", "Contract", "Intern"],
     },
     employeeGender: {
       type: String,
-      required: true,
+      required: false,
       enum: ["Male", "Female", "Other"],
     },
     employeeDateOfBirth: {
       type: Date,
-      required: true,
+      required: false,
     },
     employeeHireDate: {
       type: Date,
-      required: true,
+      required: false,
     },
     employeeAddress: {
       type: String,
-      required: true,
+      required: false,
     },
     employeeDescription: {
       type: String,

@@ -4,7 +4,7 @@ import endpointURL from "../configModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import ResponseHandlerModule from "../responseHandlerModule.js";
-class DeapartmentServices {
+class DepartmentServices {
   static async getDepartments() {
     return new Promise((resolve, reject) => {
       $.ajax({
@@ -40,7 +40,6 @@ class DeapartmentServices {
   }
 
   static async populateDepartments(selectElement) {
-    alert(selectElement);
     if (!selectElement) return;
     try {
       const response = await fetch(`${endpointURL}departments/get`, {
@@ -128,4 +127,4 @@ class DeapartmentServices {
   }
 }
 
-export default DeapartmentServices;
+export default DepartmentServices;

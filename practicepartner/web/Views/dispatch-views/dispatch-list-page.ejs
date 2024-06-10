@@ -27,7 +27,7 @@
                   <li class="nav-item">
                     <a
                       class="nav-link active"
-                      href="/listEmployees"
+                      href="/listdispatchs"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="List"
@@ -38,7 +38,7 @@
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="apps-contacts-grid"
+                      href="apps-dispatchs-grid"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Grid"
@@ -49,7 +49,7 @@
                 </ul>
               </div>
               <div>
-                <a href="#" class="btn btn-light" id="btn-new-employee">
+                <a href="#" class="btn btn-light" id="btn-new-dispatch">
                   <i class="bx bx-plus me-1"></i> Add New
                 </a>
               </div>
@@ -91,21 +91,20 @@
                     <label class="form-check-label" for="checkAll"></label>
                   </div>
                 </th>
-                <th class="align-middle">Employee Number</th>
-                <th class="align-middle">First Name</th>
-                <th class="align-middle">Middle Name</th>
-                <th class="align-middle">Last Name</th>
-                <th class="align-middle">Department</th>
-                <th class="align-middle">Position</th>
-                <th class="align-middle">Category</th>
-                <th class="align-middle">Date of Joining</th>
-                <th class="align-middle">Date of Birth</th>
+                <th class="align-middle">#</th>
+                <th class="align-middle">Type</th>
+                <th class="align-middle">Client Name</th>
+                <th class="align-middle">Dispatched</th>
+                <th class="align-middle">Due</th>
+                <th class="align-middle">Received</th>
+                <th class="align-middle">Priority</th>
+                <th class="align-middle">Status</th>
                 <th class="align-middle">Action</th>
               </tr>
             </thead>
-            <tbody id="employeeTableBody">
+            <tbody id="dispatchTableBody">
               <tr>
-                <td colspan="11" class="text-center">Loading...</td>
+                <td colspan="10" class="text-center">Loading...</td>
               </tr>
             </tbody>
           </table>
@@ -120,12 +119,13 @@
   </div>
 </div>
 
-<!-- Modal --><%- include ('./employee-profile-page') %> <%- include
-('./employee-modal-form') %>
+<!-- Modal -->
+<%- include ('./dispatch-modal-form') %><%- include ('./dispatch-profile-page')
+%>
 <!-- end modal -->
 
 <script
   type="module"
-  src="../logic/employeeModules/employeeListPage.js"
+  src="../logic/dispatchModules/dispatchListPage.js"
 ></script>
 <%- contentFor('FooterJs') %>

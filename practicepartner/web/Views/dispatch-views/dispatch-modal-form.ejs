@@ -1,0 +1,202 @@
+<div
+  class="modal fade"
+  id="dispatch-modal-form"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="disapatch-modal-form-modalTitle"
+  aria-hidden="true"
+>
+  <form
+    class="needs-validation"
+    id="frm-dispatch"
+    method="post"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <div
+      class="modal-dialog modal-dialog-centered modal-dialog modal-xl"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Add/Edit Dispatch</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Document Details</h4>
+                  <p class="card-title-desc">
+                    Provide details of the document being dispatched or
+                    received.
+                  </p>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label class="form-label" for="document-id"
+                          >Document ID</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="document-id"
+                          name="documentId"
+                          placeholder="Document ID"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label class="form-label" for="document-type"
+                          >Document Type</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="document-type"
+                          name="documentType"
+                          placeholder="Document Type"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label class="form-label" for="client-name"
+                          >Client Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="client-name"
+                          name="clientName"
+                          placeholder="Client Name"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label class="form-label" for="document-status"
+                          >Status</label
+                        >
+                        <select
+                          class="form-control form-select"
+                          id="document-status"
+                          name="documentStatus"
+                          required
+                        >
+                          <option value="">Select Status</option>
+                          <option value="Dispatched">Dispatched</option>
+                          <option value="Received">Received</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label" for="dispatch-date"
+                          >Dispatch Date</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="dispatch-date"
+                          name="dispatchDate"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label class="form-label" for="received-date"
+                          >Received Date</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="received-date"
+                          name="receivedDate"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label" for="document-description"
+                          >Description</label
+                        >
+                        <textarea
+                          id="document-description"
+                          name="documentDescription"
+                          class="form-control"
+                        ></textarea>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 offset-md-8">
+                      <div class="mb-3">
+                        <label class="form-label" for="document-file"
+                          >Upload Document</label
+                        >
+                        <input
+                          type="file"
+                          class="form-control"
+                          id="document-file"
+                          name="documentFile"
+                          accept=".pdf,.doc,.docx,.txt"
+                          required
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end card -->
+            </div>
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-lg-12">
+              <input type="hidden" name="id" id="_id" />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" id="saveButton" class="btn btn-primary">
+                Save <i class="fab fa-telegram-plane ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

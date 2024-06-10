@@ -14,14 +14,18 @@ class ClientListPage {
   }
 
   attachEventHandlers() {
-    // $("#btn-new-client").on("click", () => this.newClientRecord());
-     $("#btn-new-client").on("click", this.newClientRecord)
+    $("#btn-new-client").on("click", () => this.newClientRecord());
+    // $("#btn-new-client").on("click", this.newClientRecord());
     $("#searchInput").on("keyup", () => this.handleSearch());
     $("#records").on("click", ".btn-manage", (e) => this.manageClientRecord(e));
-    $("#records").on("click", ".btn-view, .btn-edit", (e) => this.viewOrEditClientRecord(e));
+    $("#records").on("click", ".btn-view, .btn-edit", (e) =>
+      this.viewOrEditClientRecord(e)
+    );
     $("#records").on("click", ".btn-delete", (e) => this.deleteClientRecord(e));
     $("#client-modal-form").on("hidden.bs.modal", () => this.renderTable());
-    this.paginationElement.on("click", "a.page-link", (e) => this.changePage(e));
+    this.paginationElement.on("click", "a.page-link", (e) =>
+      this.changePage(e)
+    );
   }
 
   async deleteClient(id) {
@@ -35,13 +39,20 @@ class ClientListPage {
 
   async renderTable() {
     try {
-      const { data, pagination } = await ClientServices.getClients(this.currentPage, this.rowsPerPage);
+      const { data, pagination } = await ClientServices.getClients(
+        this.currentPage,
+        this.rowsPerPage
+      );
       this.tableBody.empty();
       if (data.length > 0) {
-        data.forEach((client, index) => this.tableBody.append(this.createRow(index + 1, client)));
+        data.forEach((client, index) =>
+          this.tableBody.append(this.createRow(index + 1, client))
+        );
         this.generatePagination(pagination.totalPages);
       } else {
-        this.tableBody.append("<tr><td colspan='6' style='text-align:center'>No Records</td></tr>");
+        this.tableBody.append(
+          "<tr><td colspan='6' style='text-align:center'>No Records</td></tr>"
+        );
       }
     } catch (error) {
       console.error("Error fetching and displaying clients:", error);
@@ -49,7 +60,9 @@ class ClientListPage {
   }
 
   createRow(index, client) {
-    const clientCategory = client.clientCategory ? client.clientCategory.clientCategoryName : "N/A";
+    const clientCategory = client.clientCategory
+      ? client.clientCategory.clientCategoryName
+      : "N/A";
 
     return `
       <tr data-id='${client._id}'>
@@ -78,18 +91,17 @@ class ClientListPage {
   }
 
   newClientRecord(event) {
-     event.preventDefault();
-     ClientModalForm.new();
+    new ClientModalForm().new();
   }
 
   manageClientRecord(event) {
     const clientId = $(event.currentTarget).closest("tr").data("id");
-    new ClientProfileModal.open(clientId);
+    new ClientProfileModal().open(clientId);
   }
 
   viewOrEditClientRecord(event) {
     const clientId = $(event.currentTarget).closest("tr").data("id");
-    new ClientModalForm.open(clientId);
+    new ClientModalForm().open(clientId);
   }
 
   deleteClientRecord(event) {

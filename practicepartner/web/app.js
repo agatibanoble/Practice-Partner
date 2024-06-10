@@ -15,6 +15,7 @@ const VisitRoutes = require("./routes/visitRoute");
 const SettingRoutes = require("./routes/settingRoute");
 const EmployeeRoutes = require("./routes/employeeRoute");
 const ComplaintRoutes = require("./routes/complaintRoute");
+const DispatchRoutes = require("./routes/dispatchRoute");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "Views"));
 app.use(upload());
@@ -44,7 +45,7 @@ app.use("/", VisitRoutes);
 app.use("/", SettingRoutes);
 app.use("/employees", EmployeeRoutes);
 app.use("/complaints", ComplaintRoutes);
-
+app.use("/dispatch", DispatchRoutes);
 app.use((err, req, res, next) => {
   let error = { ...err };
   if (error.name === "JsonWebTokenError") {

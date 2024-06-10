@@ -4,14 +4,15 @@ import ContactAddressPage from "./contactAddressPage.js";
 import ContactPersonPage from "./contactPersonPage.js";
 import ConferencePage from "./conferenceModules/conferencePage.js";
 class ClientProfileModal {
-  constructor(clientId) {
-    this.clientId = clientId;
+  constructor() {
+    this.clientId = null;
     this.modal = $("#client-profile-modal");
     this.modalTitle = $("#client-profile-modalTitle");
     this.initForm();
   }
 
-  async open() {
+  async open(clientId) {
+    this.clientId = clientId;
     if (this.clientId) {
       ClientServices.getSelectedClient(this.clientId)
         .then((selectedRecord) => {
@@ -39,21 +40,28 @@ class ClientProfileModal {
       "src",
       "/assets/images/profile_pictures/" + selectedRecord.clientImage
     );
-    $(".client-category").text(
-      "Category: " + selectedRecord.clientCategory.clientCategoryName
-    );
-    $(".client-type").text("Type: " + selectedRecord.clientType);
-    $(".client-referral-type").text(
-      "Referral: " + selectedRecord.clientReferralType
-    );
-    $(".client-description").html(selectedRecord.clientDescription);
+    selectedRecord.clientCategory
+      ? $(".client-category").text(
+          "Category: " + selectedRecord.clientCategory.clientCategoryName
+        )
+      : "";
+    selectedRecord.clientType
+      ? $(".client-type").text("Type: " + selectedRecord.clientType)
+      : "";
+    selectedRecord.clientReferralType
+      ? $(".client-referral-type").text(
+          "Referral: " + selectedRecord.clientReferralType
+        )
+      : "";
+    selectedRecord.clientDescription
+      ? $(".client-description").html(selectedRecord.clientDescription)
+      : "";
   }
 
   attachEventHandlers = async () => {
     $("#btn-edit-client").click(() =>
-      new ClientModalForm(this.clientId).open()
+      new ClientModalForm().open(this.clientId)
     );
-
     $("#btn-client-addresses").click(() =>
       new ContactAddressPage(this.clientId).open()
     );

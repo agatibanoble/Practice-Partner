@@ -1,38 +1,38 @@
 import { formatDate } from "../helperModules/dateFormater.js";
-import EmployeeModalForm from "./employeeModalForm.js";
-import EmployeeProfileModal from "./employeeProfileModal.js";
-import EmployeeServices from "../services/employeeServices.js";
+import DispatchModalForm from "./dispatchModalForm.js";
+import DispatchProfileModal from "./dispatchProfileModal.js";
+import DispatchServices from "../services/dispatchServices.js";
 
-class EmployeeListPage {
+class DispatchListPage {
   constructor() {
     this.rowsPerPage = 10;
     this.currentPage = 1;
-    this.tableBody = $("#employeeTableBody");
+    this.tableBody = $("#dispatchTableBody");
     this.paginationElement = $("#pagination");
     this.attachEventHandlers();
     this.renderTable();
   }
 
   attachEventHandlers() {
-    $("#btn-new-employee").on("click", this.newEmployeeRecord.bind(this));
+    $("#btn-new-dispatch").on("click", this.newDispatchRecord.bind(this));
 
     $("#searchInput").on("keyup", this.handleSearch.bind(this));
     $("#records").on(
       "click",
       ".btn-manage",
-      this.manageEmployeeRecord.bind(this)
+      this.manageDispatchRecord.bind(this)
     );
     $("#records").on(
       "click",
       ".btn-edit",
-      this.viewOrEditEmployeeRecord.bind(this)
+      this.viewOrEditDispatchRecord.bind(this)
     );
     $("#records").on(
       "click",
       ".btn-delete",
-      this.deleteEmployeeRecord.bind(this)
+      this.deleteDispatchRecord.bind(this)
     );
-    $("#employee-modal-form").on(
+    $("#dispatch-modal-form").on(
       "hidden.bs.modal",
       this.renderTable.bind(this)
     );
@@ -43,17 +43,17 @@ class EmployeeListPage {
     );
   }
 
-  async deleteEmployee(id) {
+  async deleteDispatch(id) {
     try {
-      await EmployeeServices.deleteRecord(id);
+      await DispatchServices.deleteRecord(id);
       this.renderTable();
     } catch (error) {
-      console.error("Error deleting employee:", error);
+      console.error("Error deleting dispatch:", error);
     }
   }
 
   async renderTable() {
-    const { data, pagination } = await EmployeeServices.getEmployees(
+    const { data, pagination } = await DispatchServices.getDispatch(
       this.currentPage,
       this.rowsPerPage
     );
@@ -76,27 +76,14 @@ class EmployeeListPage {
     return `
       <tr data-id='${record._id}'>
         <td>${index}</td>
-        <td>${record.employeeNumber}</td>
-        <td>${record.employeeFirstName}</td>
-        <td>${record.employeeMiddleName || ""}</td>
-        <td>${record.employeeLastName}</td>
-        <td>${
-          record.employeeDepartment
-            ? record.employeeDepartment.departmentName
-            : "Not Provided"
-        }</td>
-        <td>${
-          record.employeePosition
-            ? record.employeePosition.employeePositionName
-            : "Not Provided"
-        }</td>
-        <td>${
-          record.employeeCategory
-            ? record.employeeCategory.employeeCategoryName
-            : "Not Provided"
-        }</td>
-        <td>${formatDate(record.employeeHireDate, "d-m-Y")}</td>
-        <td>${formatDate(record.employeeDateOfBirth, "d-m-Y")}</td>
+        <td>${record.dispatchNumber}</td>
+        <td>${record.dispatchType}</td>
+        <td>${record.client.clientName}</td>
+        <td>${formatDate(record.dispatchDate, "d-m-Y")}</td>
+        <td>${formatDate(record.dispatchDueDate, "d-m-Y")}</td>
+        <td>${formatDate(record.dispatchReceivedDate, "d-m-Y")}</td>      
+        <td>${record.dispatchPriority}</td>
+        <td>${record.dispatchStatus || ""}</td>        
         <td>
           <div class="dropdown">
             <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-expanded="false">
@@ -113,23 +100,23 @@ class EmployeeListPage {
       </tr>`;
   }
 
-  newEmployeeRecord() {
-    new EmployeeModalForm().new();
+  newDispatchRecord() {
+    new DispatchModalForm().new();
   }
 
-  manageEmployeeRecord(event) {
-    const employeeId = $(event.currentTarget).closest("tr").data("id");
-    new EmployeeProfileModal().open(employeeId);
+  manageDispatchRecord(event) {
+    const dispatchId = $(event.currentTarget).closest("tr").data("id");
+    new DispatchProfileModal().open(dispatchId);
   }
 
-  viewOrEditEmployeeRecord(event) {
-    const employeeId = $(event.currentTarget).closest("tr").data("id");
-    new EmployeeModalForm().open(employeeId);
+  viewOrEditDispatchRecord(event) {
+    const dispatchId = $(event.currentTarget).closest("tr").data("id");
+    new DispatchModalForm().open(dispatchId);
   }
 
-  deleteEmployeeRecord(event) {
-    const employeeId = $(event.currentTarget).closest("tr").data("id");
-    this.deleteEmployee(employeeId);
+  deleteDispatchRecord(event) {
+    const dispatchId = $(event.currentTarget).closest("tr").data("id");
+    this.deleteDispatch(dispatchId);
   }
 
   handleSearch() {
@@ -164,4 +151,4 @@ class EmployeeListPage {
   }
 }
 
-new EmployeeListPage();
+new DispatchListPage();
