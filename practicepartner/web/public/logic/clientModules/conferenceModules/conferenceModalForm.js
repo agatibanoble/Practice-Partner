@@ -26,17 +26,19 @@ class ConferenceModalForm {
         $("#client-number", this.form).val(record.clientNumber);
         $("#client-name", this.form).val(record.clientName);
         $("#client-id", this.form).val(record._id);
-        this.modal.css("display", "block").modal("show");
-        $(".modal-backdrop")
-          .prev(".modal")
-          .css("background-color", "lightblue");
+        // this.modal.css("display", "block").modal("show");
+
+        // $(".modal-backdrop")
+        //   .prev(".modal")
+        //   .css("background-color", "lightblue");
       } catch (error) {
         console.error("Error:", error);
       }
     }
-    this.modalTitle.text("Add New Conference");
-    this.modal.css("display", "block").modal("show");
-    $(".modal-backdrop").css("filter", "blur(100px)");
+    // this.modalTitle.text("Add New Conference");
+    showModal(this.modal, "Add New Conference", this.modalTitle);
+    // this.modal.css("display", "block").modal("show");
+    // $(".modal-backdrop").css("filter", "blur(100px)");
   }
 
   async open() {
@@ -51,8 +53,9 @@ class ConferenceModalForm {
         );
         if (record) {
           this.populateFormFields(record);
-          this.modalTitle.text("Edit Selected Address");
-          this.modal.css("display", "block").modal("show");
+          // this.modalTitle.text("Edit Selected Address");
+          // this.modal.css("display", "block").modal("show");
+          showModal(this.modal, "Edit Selected Conference", this.modalTitle);
         } else {
           throw new Error("Failed to fetch Conference");
         }

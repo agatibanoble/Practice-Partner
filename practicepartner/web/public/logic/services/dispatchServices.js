@@ -1,15 +1,15 @@
 import ResponseHandlerModule from "../responseHandlerModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
-import endpointURL from "../configModule.js";
-const endpoint = `${endpointURL}dispatch/`;
+// import endpointURL from "../configModule.js";
+// const endpoint = ``;
 
 class DispatchServices {
-  static async getDispatch(currentPage = 1, rowsPerPage = 10) {
+  static async getDispatch(currentPage = 1, rowsPerPage = 10, searchTerm = "") {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpoint}get`,
+        url: `${endpointURL}dispatch/get`,
         method: "GET",
-        data: { page: currentPage, limit: rowsPerPage },
+        data: { page: currentPage, limit: rowsPerPage, searchTerm: searchTerm },
         dataType: "json",
         contentType: "application/json",
         success: function (response) {
@@ -34,7 +34,7 @@ class DispatchServices {
           }
 
           $.ajax({
-            url: `${endpoint}search`,
+            url: `${endpointURL}dispatch/search`,
             method: "GET",
             data: { searchItem: searchTerm },
             dataType: "json",
@@ -75,7 +75,7 @@ class DispatchServices {
   static getSelectedDispatch(DispatchId) {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${endpoint}get/${DispatchId}`,
+        url: `${endpointURL}dispatch/get/${DispatchId}`,
         type: "GET",
         data: { id: DispatchId },
         success: (response) => {
@@ -95,7 +95,7 @@ class DispatchServices {
         const data = removeEmptyFields(formData);
         const id = data.get("id");
         const action = id ? `update/${id}` : "create";
-        const response = await fetch(endpoint + action, {
+        const response = await fetch(`${endpointURL}dispatch/${action}`, {
           method: "POST",
           body: data,
         });
@@ -121,12 +121,15 @@ class DispatchServices {
       });
 
       if (confirmation) {
-        const response = await fetch(`${endpoint}delete/${DispatchId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${endpointURL}dispatch/delete/${DispatchId}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           alertify.notify("Record deleted successfully", "success", 5);

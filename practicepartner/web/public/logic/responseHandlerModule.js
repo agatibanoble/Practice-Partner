@@ -53,3 +53,4 @@ const ResponseHandlerModule = (() => {
 })();
 
 export default ResponseHandlerModule;
+window.ResponseHandlerModule = ResponseHandlerModule;

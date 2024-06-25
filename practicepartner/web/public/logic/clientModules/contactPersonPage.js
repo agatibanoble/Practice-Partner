@@ -173,7 +173,7 @@ class ContactPersonPage {
 
   sendMail = (event) => {
     const email = event.closest(".my-data-email").data("id");
-    new EmailModule(email).composeEmail();
+    new EmailModule().composeEmail(email);
   };
   newRecord = () => {
     new ContactPersonModalForm().new(this.clientId);

@@ -18,7 +18,7 @@ router.get("/get", getAllDispatches);
 router.get("/get/:id", getDispatchById);
 
 // Update a dispatch by ID
-router.put("/update/:id", updateDispatchById);
+router.post("/update/:id", updateDispatchById);
 
 // Delete a dispatch by ID
 router.delete("/delete/:id", deleteDispatchById);

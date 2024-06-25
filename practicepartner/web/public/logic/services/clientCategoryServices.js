@@ -1,6 +1,6 @@
 // Courts.js
 
-import endpointURL from "../configModule.js";
+// import endpointURL from "../configModule.js";
 import removeEmptyFields from "../helperModules/emptyFieldsUtil.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import ResponseHandlerModule from "../responseHandlerModule.js";

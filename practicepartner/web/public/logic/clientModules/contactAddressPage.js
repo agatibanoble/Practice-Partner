@@ -20,7 +20,7 @@ class ContactAddressPage {
           this.populateFormFields(selectedRecords);
         })
         .then(() => {
-          this.modalTitle.text("Client Addresses");
+          // this.modalTitle.text("Client Addresses");
           // this.modal.css("display", "block").modal("show");
         })
         .catch((error) => {
@@ -31,7 +31,8 @@ class ContactAddressPage {
       //this.modalTitle.text("Add New Case");
     }
 
-    this.modal.css("display", "block").modal("show");
+    // this.modal.css("display", "block").modal("show");
+    showModal(this.modal, "Client Addresses", this.modalTitle);
   }
 
   async populateFormFields(selectedRecords) {

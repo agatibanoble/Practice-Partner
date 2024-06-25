@@ -13,3 +13,5 @@ function checkField(fieldValue) {
 }
 
 export default checkField;
+// Attach the function to the window object to make it globally accessible
+window.checkField = checkField;

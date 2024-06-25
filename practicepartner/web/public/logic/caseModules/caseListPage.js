@@ -1,7 +1,7 @@
-import { formatDate } from "../helperModules/dateFormater.js";
+// import { formatDate } from "../helperModules/dateFormater.js";
 import CaseModalForm from "./caseModalForm.js";
 import CaseServices from "../services/caseServices.js";
-
+import CaseProfilePage from "./caseProfilePage.js";
 class CaseManager {
   constructor() {
     this.rowsPerPage = 10;
@@ -121,12 +121,13 @@ class CaseManager {
 
   manageCaseRecord(event) {
     const caseId = $(event.currentTarget).closest("tr").data("id");
-    new CaseProfileModal(caseId).open();
+
+    new CaseProfilePage().open(caseId);
   }
 
   viewOrEditCaseRecord(event) {
     const caseId = $(event.currentTarget).closest("tr").data("id");
-    new CaseModalForm(caseId).open();
+    new CaseModalForm().open(caseId);
   }
 
   deleteCaseRecord(event) {

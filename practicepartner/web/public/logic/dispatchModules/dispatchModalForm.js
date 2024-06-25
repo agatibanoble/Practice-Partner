@@ -1,7 +1,9 @@
-// import DocumentTypeServices from "../services/documentServices.js";
-// import DispatchCategoryServices from "../../logic/services/documentServices.js";
+// import { formatDate } from "../helperModules/dateFormater.js";
+import ClientServices from "../services/clientServices.js";
+import DeliveryTypeServices from "../services/deliveryTypeServices.js";
 import DispatchServices from "../services/dispatchServices.js";
 import DocumentTypeServices from "../services/documentTypeServices.js";
+// import { dateTimePicker } from "../helperModules/dateTimePicker.js";
 
 class DispatchModalForm {
   static instance = null; // Static property to hold the single instance
@@ -34,15 +36,19 @@ class DispatchModalForm {
   }
 
   async initForm() {
+    dateTimePicker("#dispatch-date", "Y-m-d", "", "", "", true);
+    dateTimePicker("#dispatch-due-date", "Y-m-d", "", "", "", true);
+    dateTimePicker("#dispatch-received-date", "Y-m-d", "", "", "", true);
+    // dateTimePicker();
     let selectElement = $("#document-type", this.form);
     await DocumentTypeServices.populateDocumenttypes(selectElement);
 
-    selectElement = $("#dispatch-category", this.form);
-    await DispatchCategoryServices.populateDispatchCategories(selectElement);
+    selectElement = $("#delivery-type", this.form);
+    await DeliveryTypeServices.populateDeliveryTypes(selectElement);
   }
 
   async new() {
-    await this.initFormPromise; // Ensure the form is initialized before showing the modal
+    // await this.initFormPromise; // Ensure the form is initialized before showing the modal
     this.modalTitle.text("Add New Dispatch");
     this.showModal();
   }
@@ -68,28 +74,56 @@ class DispatchModalForm {
   populateFormFields(selectedRecord) {
     if (selectedRecord) {
       $("#dispatch-number", this.form).val(selectedRecord.dispatchNumber);
-      $("#dispatch-title", this.form).val(selectedRecord.dispatchTitle);
+      $("#client-name", this.form).val(
+        selectedRecord.client.clientNumber +
+          ":" +
+          selectedRecord.client.clientName
+      );
+      $("#client-id", this.form).val(selectedRecord.client._id);
       $("#dispatch-status", this.form).val(selectedRecord.dispatchStatus);
-      $("#dispatch-department", this.form).val(
-        selectedRecord.dispatchDepartment
-          ? selectedRecord.dispatchDepartment
-          : ""
-      );
-      $("#dispatch-category", this.form).val(
-        selectedRecord.dispatchCategory ? selectedRecord.dispatchCategory : ""
-      );
       $("#dispatch-priority", this.form).val(
         selectedRecord.dispatchPriority ? selectedRecord.dispatchPriority : ""
       );
+      $("#dispatch-type", this.form).val(
+        selectedRecord.dispatchType ? selectedRecord.dispatchType : ""
+      );
+      $("#document-type", this.form).val(
+        selectedRecord.documentType ? selectedRecord.documentType._id : ""
+      );
       $("#dispatch-date", this.form).val(
-        selectedRecord.dispatchDate ? selectedRecord.dispatchDate : ""
+        selectedRecord.dispatchDate
+          ? formatDate(selectedRecord.dispatchDate, "Y-m-d")
+          : ""
+      );
+      $("#dispatch-received-date", this.form).val(
+        selectedRecord.dispatchReceivedDate
+          ? formatDate(selectedRecord.dispatchReceivedDate, "Y-m-d")
+          : ""
       );
       $("#dispatch-due-date", this.form).val(
-        selectedRecord.dispatchDueDate ? selectedRecord.dispatchDueDate : ""
+        selectedRecord.dispatchDueDate
+          ? formatDate(selectedRecord.dispatchDueDate, "Y-m-d")
+          : ""
       );
-      $("#dispatch-description", this.form).val(
-        selectedRecord.dispatchDescription
-          ? selectedRecord.dispatchDescription
+      $("#dispatch-note", this.form).val(
+        selectedRecord.dispatchNote ? selectedRecord.dispatchNote : ""
+      );
+      $("#delivery-type", this.form).val(
+        selectedRecord.deliveryType ? selectedRecord.deliveryType._id : ""
+      );
+      $("#dispatch-delivered-by", this.form).val(
+        selectedRecord.dispatchDeliveredBy
+          ? selectedRecord.dispatchDeliveredBy
+          : ""
+      );
+      $("#dispatch-source-address", this.form).val(
+        selectedRecord.dispatchSourceAddress
+          ? selectedRecord.dispatchSourceAddress
+          : ""
+      );
+      $("#dispatch-destination-address", this.form).val(
+        selectedRecord.dispatchDestinationAddress
+          ? selectedRecord.dispatchDestinationAddress
           : ""
       );
       $("#_id", this.form).val(selectedRecord._id);
@@ -104,6 +138,9 @@ class DispatchModalForm {
     this.form.on("submit", async (event) => {
       event.preventDefault();
       await this.handleFormSubmission($(event.currentTarget));
+    });
+    $("#client-name").on("focus", () => {
+      ClientServices.searchClients($("#client-name"));
     });
 
     this.modal.on("hidden.bs.modal", () => {

@@ -29,17 +29,16 @@ class ContactAddressModalForm {
         })
         .then(() => {
           // Show the modal after populating form fields
-          this.modal.css("display", "block").modal("show");
+          // this.modal.css("display", "block").modal("show");
         })
         .catch((error) => {
           // Handle error if client details fetch fails
           console.error("Error:", error);
         });
     }
-    this.modalTitle.text("Add New Address");
-    this.modal.css("display", "block").modal("show");
-    // $(".modal-backdrop").css("filter", "blur(5px)");
-    $(".modal-backdrop").prev(".modal").css("background-color", "lightblue");
+    // this.modalTitle.text("Add New Address");
+    // this.modal.css("display", "block").modal("show");
+    showModal(this.modal, "Add New Address", this.modalTitle);
   }
 
   async open() {
@@ -53,13 +52,10 @@ class ContactAddressModalForm {
         if (record) {
           // Populate form fields with selected client address details
           this.populateFormFields(record);
-          this.modalTitle.text("Edit Selected Address"); // Set modal title for edit mode
+          // this.modalTitle.text("Edit Selected Address"); // Set modal title for edit mode
           // this.modal.modal("show");
-          this.modal.css("display", "block").modal("show"); // Show the modal
-          // $(".modal-backdrop").css("filter", "blur(5px)");
-          $(".modal-backdrop")
-            .prev(".modal")
-            .css("background-color", "lightblue");
+          // this.modal.css("display", "block").modal("show"); // Show the modal
+          showModal(this.modal, "Edit Selected Address", this.modalTitle);
         } else {
           // Handle error if client address fetch fails
           throw new Error("Failed to fetch client address");

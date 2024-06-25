@@ -60,6 +60,12 @@ const caseSchema = new mongoose.Schema(
       ref: "Client",
       required: false,
     },
+    caseConference: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "CaseConference", // Assuming you have a separate Country model
+      },
+    ],
   },
   { timestamps: true }
 );

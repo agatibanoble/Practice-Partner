@@ -17,19 +17,19 @@ const dispatchSchema = new mongoose.Schema({
   },
   dispatchStatus: {
     type: String,
-    enum: ["Pending", "Dispatched", "Received", "Canceled", "Returned"],
+    enum: ["Pending", "Dispatched", "Received", "Cancelled", "Returned"],
     default: "Pending",
     required: true,
   },
   dispatchType: {
     type: String,
-    enum: ["Out", "In"],
-    default: "Out",
+    enum: ["outbound", "inbound"],
+    default: "outbound",
     required: true,
   },
   dispatchPriority: {
     type: String,
-    enum: ["Urgent", "Normal", "Slow"],
+    enum: ["Urgent", "High", "Normal", "Low"],
     default: "Normal",
     required: true,
   },
@@ -50,11 +50,21 @@ const dispatchSchema = new mongoose.Schema({
   dispatchSender: {
     type: String,
   },
+  dispatchDestinationAddress: {
+    type: String,
+  },
+  dispatchSourceAddress: {
+    type: String,
+  },
   dispatchDeliveredBy: {
     type: String,
   },
-
-  dispatchNotes: {
+  deliveryType: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "DeliveryType",
+    required: true,
+  },
+  dispatchNote: {
     type: String,
   },
 });

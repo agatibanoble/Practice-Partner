@@ -48,8 +48,6 @@ const getAllCases = function (req, res) {
   const regex = new RegExp(searchTerm, "i");
   const query = { caseTitle: { $regex: regex } }; // Example search query
 
-  console.log("Query:", query); // Debugging statement
-
   let totalCount;
 
   Case.countDocuments(query)
@@ -161,17 +159,14 @@ const getCaseById = (req, res) => {
     .populate({
       path: "client",
       model: "Client",
-    })
-    .populate({
-      path: "court",
-      model: "Court",
-    })
-    .populate({
-      path: "client",
       populate: {
         path: "clientCategory",
         model: "ClientCategory",
       },
+    })
+    .populate({
+      path: "court",
+      model: "Court",
     })
     .then((foundCase) => {
       if (!foundCase) {
@@ -200,6 +195,7 @@ const getCaseById = (req, res) => {
 const updateCaseById = async (req, res) => {
   try {
     const caseId = req.params.id;
+    console.log(req.body);
     const updatedCase = await Case.findByIdAndUpdate(caseId, req.body, {
       new: true,
     });

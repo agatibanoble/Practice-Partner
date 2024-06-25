@@ -6,6 +6,7 @@ import RegionListPage from "../regionModules/regionListPage.js";
 import CourtListPage from "../courtModules/courtListPage.js";
 import DepartmentListPage from "../departmentModules/departmentListPage.js";
 import DocumentTypeListPage from "../documentTypeModules/documentTypeListPage.js";
+import DeliveryTypeListPage from "../deliveryTypeModules/deliveryTypeListPage.js";
 import EmployeeCategoryListPage from "../employeeCategoryModules/employeeCategoryListPage.js";
 import EmployeePositionListPage from "../employeePositionModules/employeePositionListPage.js";
 class Settings {
@@ -35,6 +36,9 @@ class Settings {
     );
     $("#btn-document-type-modal-page").click(() =>
       new DocumentTypeListPage().open()
+    );
+    $("#btn-delivery-type-modal-page").click(() =>
+      new DeliveryTypeListPage().open()
     );
   };
 

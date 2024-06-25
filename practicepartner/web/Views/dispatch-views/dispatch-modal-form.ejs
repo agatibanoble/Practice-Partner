@@ -15,10 +15,7 @@
     enctype="multipart/form-data"
     novalidate
   >
-    <div
-      class="modal-dialog modal-dialog-centered modal-dialog modal-xl"
-      role="document"
-    >
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalTitle">Add/Edit Dispatch</h5>
@@ -34,25 +31,21 @@
             <div class="col-xl-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">Document Details</h4>
-                  <p class="card-title-desc">
-                    Provide details of the document being dispatched or
-                    received.
-                  </p>
+                  <h4 class="card-title">Dispatch Details</h4>
                 </div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-3">
                       <div class="mb-3">
-                        <label class="form-label" for="document-id"
-                          >Document ID</label
+                        <label class="form-label" for="dispatch-number"
+                          >Dispatch Number</label
                         >
                         <input
                           type="text"
                           class="form-control"
-                          id="document-id"
-                          name="documentId"
-                          placeholder="Document ID"
+                          id="dispatch-number"
+                          name="dispatchNumber"
+                          placeholder="Dispatch Number"
                           required
                         />
                         <div class="valid-feedback">Looks good!</div>
@@ -63,18 +56,18 @@
                         <label class="form-label" for="document-type"
                           >Document Type</label
                         >
-                        <input
-                          type="text"
-                          class="form-control"
+                        <select
+                          class="form-control form-select"
                           id="document-type"
                           name="documentType"
-                          placeholder="Document Type"
                           required
-                        />
+                        >
+                          <option value="">Select Status</option>
+                        </select>
                         <div class="valid-feedback">Looks good!</div>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label class="form-label" for="client-name"
                           >Client Name</label
@@ -90,34 +83,31 @@
                         <div class="valid-feedback">Looks good!</div>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
                       <div class="mb-3">
-                        <label class="form-label" for="document-status"
-                          >Status</label
+                        <label class="form-label" for="dispatch-due-date"
+                          >Due Date</label
                         >
-                        <select
-                          class="form-control form-select"
-                          id="document-status"
-                          name="documentStatus"
+                        <input
+                          type="date"
+                          class="form-control datepicker input active"
+                          id="dispatch-due-date"
+                          name="dispatchDueDate"
                           required
-                        >
-                          <option value="">Select Status</option>
-                          <option value="Dispatched">Dispatched</option>
-                          <option value="Received">Received</option>
-                        </select>
+                        />
                         <div class="valid-feedback">Looks good!</div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="mb-3">
                         <label class="form-label" for="dispatch-date"
                           >Dispatch Date</label
                         >
                         <input
                           type="date"
-                          class="form-control"
+                          class="form-control input active"
                           id="dispatch-date"
                           name="dispatchDate"
                           required
@@ -125,16 +115,16 @@
                         <div class="valid-feedback">Looks good!</div>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="mb-3">
-                        <label class="form-label" for="received-date"
+                        <label class="form-label" for="dispatch-received-date"
                           >Received Date</label
                         >
                         <input
                           type="date"
-                          class="form-control"
-                          id="received-date"
-                          name="receivedDate"
+                          class="form-control datepicker input active"
+                          id="dispatch-received-date"
+                          name="dispatchReceivedDate"
                           required
                         />
                         <div class="valid-feedback">Looks good!</div>
@@ -142,32 +132,139 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                       <div class="mb-3">
-                        <label class="form-label" for="document-description"
-                          >Description</label
+                        <label class="form-label" for="dispatch-type"
+                          >Dispatch Type</label
+                        >
+                        <select
+                          class="form-control form-select"
+                          id="dispatch-type"
+                          name="dispatchType"
+                          required
+                        >
+                          <option value="">Select Dispatch Type</option>
+                          <option value="outbound">Outbound</option>
+                          <option value="inbound">Inbound</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="dispatch-priority"
+                          >Type</label
+                        >
+                        <select
+                          class="form-control form-select"
+                          id="dispatch-priority"
+                          name="dispatchPriority"
+                          required
+                        >
+                          <option value="">Select Priority</option>
+                          <option value="Urgent">Urgent</option>
+                          <option value="High">High</option>
+                          <option value="Normal">Normal</option>
+                          <option value="Low">Low</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="dispatch-status"
+                          >Status</label
+                        >
+                        <select
+                          class="form-control form-select"
+                          id="dispatch-status"
+                          name="dispatchStatus"
+                          required
+                        >
+                          <option value="">Select Status</option>
+                          <option value="Pending">Pending</option>
+                          <option value="Dispatched">Dispatched</option>
+                          <option value="Received">Received</option>
+                          <option value="Cancelled">Cancelled</option>
+                          <option value="Returned">Returned</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="delivery-type"
+                          >Delivery Type</label
+                        >
+                        <select
+                          class="form-control form-select"
+                          id="delivery-type"
+                          name="deliveryType"
+                          required
+                        >
+                          <option value="">Select Delivery Type</option>
+                        </select>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="dispatch-delivered-by"
+                          >Delivered By</label
+                        >
+                        <input
+                          type="text"
+                          id="dispatch-delivered-by"
+                          name="dispatchDeliveredBy"
+                          class="form-control"
+                        />
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label" for="dispatch-source-address"
+                          >Source Address</label
                         >
                         <textarea
-                          id="document-description"
-                          name="documentDescription"
+                          id="dispatch-source-address"
+                          name="dispatchSourceAddress"
                           class="form-control"
                         ></textarea>
                         <div class="valid-feedback">Looks good!</div>
                       </div>
                     </div>
-                    <div class="col-md-4 offset-md-8">
+
+                    <div class="col-md-4">
                       <div class="mb-3">
-                        <label class="form-label" for="document-file"
-                          >Upload Document</label
+                        <label
+                          class="form-label"
+                          for="dispatch-destination-address"
+                          >Destination Address</label
                         >
-                        <input
-                          type="file"
+                        <textarea
+                          id="dispatch-destination-address"
+                          name="dispatchDestinationAddress"
                           class="form-control"
-                          id="document-file"
-                          name="documentFile"
-                          accept=".pdf,.doc,.docx,.txt"
-                          required
-                        />
+                        ></textarea>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label class="form-label" for="dispatch-note"
+                          >Note</label
+                        >
+                        <textarea
+                          id="dispatch-note"
+                          name="dispatchNote"
+                          class="form-control"
+                        ></textarea>
                         <div class="valid-feedback">Looks good!</div>
                       </div>
                     </div>
@@ -178,11 +275,12 @@
             </div>
           </div>
         </div>
-        <!-- end col -->
+        <!-- end modal-body -->
         <div class="modal-footer">
           <div class="row">
             <div class="col-lg-12">
               <input type="hidden" name="id" id="_id" />
+              <input type="hidden" name="client" id="client-id" />
               <button
                 type="button"
                 class="btn btn-secondary"

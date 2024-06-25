@@ -39,7 +39,8 @@ class ClientModalForm {
     await this.initFormPromise;
     await this.initEditor("#frm-client #client-description-editor");
     this.modalTitle.text("Add New Client");
-    this.showModal();
+    // this.showModal();
+    showModal(this.modal, "Add New Client", this.modalTitle);
   }
 
   async open(clientId) {
@@ -52,8 +53,9 @@ class ClientModalForm {
       await this.initFormPromise;
       const selectedRecord = await ClientServices.getSelectedClient(clientId);
       this.populateFormFields(selectedRecord);
-      this.modalTitle.text("Edit Selected Client");
-      this.showModal();
+      // this.modalTitle.text("Edit Selected Client");
+      // this.showModal();
+      showModal(this.modal, "Edit Selected Client", this.modalTitle);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -63,7 +65,7 @@ class ClientModalForm {
     if (selectedRecord) {
       $("#client-number", this.form).val(selectedRecord.clientNumber);
       $("#client-name", this.form).val(selectedRecord.clientName);
-      $("#client-category", this.form).val(selectedRecord.clientCategory);
+      $("#client-category", this.form).val(selectedRecord.clientCategory._id);
       $("#client-type", this.form).val(selectedRecord.clientType);
       $("#client-referral-type", this.form).val(
         selectedRecord.clientReferralType
@@ -73,14 +75,17 @@ class ClientModalForm {
     }
   }
 
-  showModal() {
-    this.modal.css("display", "block").modal("show");
-  }
+  // showModal() {
+  //   this.modal.css("display", "block").modal("show");
+  // }
 
   attachEventHandlers() {
     this.form.on("submit", async (event) => {
       event.preventDefault();
       await this.handleFormSubmission($(event.currentTarget));
+    });
+    $("#client-number").on("focus", () => {
+      ClientServices.searchClients($("#client-number"));
     });
 
     this.modal.on("hidden.bs.modal", () => {

@@ -1,9 +1,9 @@
 import { getEditorInstance } from "../../helperModules/CKEditor.js";
 class EmailModule {
-  constructor(email) {
+  constructor() {
     this.emails = [];
     this.editorInstance = null;
-    this.email = email;
+    this.email;
 
     $(".modal").on("hidden.bs.modal", () => {
       this.initForm();
@@ -12,7 +12,8 @@ class EmailModule {
     // this.initCKEditor();
   }
 
-  composeEmail() {
+  composeEmail(email) {
+    this.email = email;
     $("#to").val(this.email);
     $("#compose-email-modal").modal("show");
   }

@@ -1,4 +1,4 @@
-import { formatDate } from "../helperModules/dateFormater.js";
+// import { formatDate } from "../helperModules/dateFormater.js";
 import DispatchModalForm from "./dispatchModalForm.js";
 import DispatchProfileModal from "./dispatchProfileModal.js";
 import DispatchServices from "../services/dispatchServices.js";
@@ -7,6 +7,7 @@ class DispatchListPage {
   constructor() {
     this.rowsPerPage = 10;
     this.currentPage = 1;
+    this.searchTerm = "";
     this.tableBody = $("#dispatchTableBody");
     this.paginationElement = $("#pagination");
     this.attachEventHandlers();
@@ -16,7 +17,9 @@ class DispatchListPage {
   attachEventHandlers() {
     $("#btn-new-dispatch").on("click", this.newDispatchRecord.bind(this));
 
-    $("#searchInput").on("keyup", this.handleSearch.bind(this));
+    // $("#searchInputDispatch").on("keyup", this.handleSearch.bind(this));
+    $("#searchInputDispatch").on("keyup", this.handleSearch.bind(this));
+
     $("#records").on(
       "click",
       ".btn-manage",
@@ -55,7 +58,8 @@ class DispatchListPage {
   async renderTable() {
     const { data, pagination } = await DispatchServices.getDispatch(
       this.currentPage,
-      this.rowsPerPage
+      this.rowsPerPage,
+      this.searchTerm
     );
     // console.log(data);
     this.tableBody.empty();
@@ -121,6 +125,7 @@ class DispatchListPage {
 
   handleSearch() {
     this.currentPage = 1;
+    this.searchTerm = $("#searchInputDispatch").val();
     this.renderTable();
   }
 

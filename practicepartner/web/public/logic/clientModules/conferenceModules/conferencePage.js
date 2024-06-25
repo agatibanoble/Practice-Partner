@@ -18,7 +18,7 @@ class ConferencePage {
           this.populateFormFields(selectedRecords);
         })
         .then(() => {
-          this.modalTitle.text("Conference");
+          // this.modalTitle.text("Conference");
           // this.modal.css("display", "block").modal("show");
         })
         .catch((error) => {
@@ -29,7 +29,8 @@ class ConferencePage {
       //this.modalTitle.text("Add New Case");
     }
 
-    this.modal.css("display", "block").modal("show");
+    // this.modal.css("display", "block").modal("show");
+    showModal(this.modal, "Client Conference", this.modalTitle);
   }
 
   async populateFormFields(selectedRecords) {
@@ -162,7 +163,7 @@ class ConferencePage {
 
   sendMail = (event) => {
     const email = event.closest(".my-data-email").data("id");
-    new EmailModule(email).composeEmail();
+    new EmailModule().composeEmail(email);
   };
   newRecord = () => {
     new ConferenceModalForm().new(this.clientId);

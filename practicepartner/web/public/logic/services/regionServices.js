@@ -1,6 +1,6 @@
 // Courts.js
 
-import endpointURL from "../configModule.js";
+// import endpointURL from "../configModule.js";
 import { populateSelectWithOptions } from "../helperModules/populateSelectWithOptions.js";
 import ResponseHandlerModule from "../responseHandlerModule.js";
 class RegionServices {

@@ -1,37 +1,85 @@
 const Dispatch = require("../models/dispatchModel");
 
 // Get all dispatches
-const getAllDispatches = function (req, res) {
-  // Retrieve all dispatches from the database
-  Dispatch.find()
-    .populate("client documentType contactPersons") // Populate related fields
-    .then((dispatches) => {
-      // Send a success response with the list of dispatches
-      const successResponse = {
-        success: true,
-        message: "Dispatches retrieved successfully",
-        data: dispatches,
-        error: null,
-      };
-      res.status(200).json(successResponse);
-    })
-    .catch((error) => {
-      // Send an error response if an error occurs while fetching dispatches
-      const errorResponse = {
-        success: false,
-        message: "There was an error retrieving dispatches",
-        data: null,
-        error: error.message,
-      };
-      res.status(500).json(errorResponse);
-    });
+// const getAllDispatches = function (req, res) {
+//   // Retrieve all dispatches from the database
+//   Dispatch.find()
+//     .populate("client documentType") // Populate related fields
+//     .then((dispatches) => {
+//       // Send a success response with the list of dispatches
+//       const successResponse = {
+//         success: true,
+//         message: "Dispatches retrieved successfully",
+//         data: dispatches,
+//         error: null,
+//       };
+//       res.status(200).json(successResponse);
+//     })
+//     .catch((error) => {
+//       // Send an error response if an error occurs while fetching dispatches
+//       const errorResponse = {
+//         success: false,
+//         message: "There was an error retrieving dispatches",
+//         data: null,
+//         error: error.message,
+//       };
+//       res.status(500).json(errorResponse);
+//     });
+// };
+
+const getAllDispatches = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const searchTerm = req.query.searchTerm || "";
+
+    const startIndex = (page - 1) * limit;
+    const regex = new RegExp(searchTerm, "i");
+    const query = {
+      $or: [
+        { "client.clientName": { $regex: regex } },
+        { "documentType.documentTypeName": { $regex: regex } },
+        { dispatchNumber: { $regex: regex } },
+        // { clientName: { $regex: regex } },
+        { dispatchNote: { $regex: regex } },
+      ],
+    };
+
+    const totalCount = await Dispatch.countDocuments(query);
+    const dispatches = await Dispatch.find(query)
+      .populate("client documentType")
+      .limit(limit)
+      .skip(startIndex);
+
+    const pagination = {
+      currentPage: page,
+      totalPages: Math.ceil(totalCount / limit),
+    };
+
+    const successResponse = {
+      success: true,
+      message: "Dispatches retrieved successfully",
+      count: dispatches.length,
+      pagination: pagination,
+      data: dispatches,
+    };
+    res.status(200).json(successResponse);
+  } catch (error) {
+    const errorResponse = {
+      success: false,
+      message: "There was an error retrieving dispatches",
+      data: null,
+      error: error.message,
+    };
+    res.status(500).json(errorResponse);
+  }
 };
 
 // Get a dispatch by ID
 const getDispatchById = function (req, res) {
   // Find a dispatch by ID
   Dispatch.findById(req.params.id)
-    .populate("client documentType contactPersons") // Populate related fields
+    .populate("client documentType deliveryType") // Populate related fields
     .then((dispatch) => {
       // Check if the dispatch exists
       if (!dispatch) {
@@ -101,7 +149,7 @@ const createDispatch = function (req, res) {
 const updateDispatchById = function (req, res) {
   // Find and update the dispatch by ID
   Dispatch.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .populate("client documentType contactPersons") // Populate related fields
+    .populate("client documentType deliveryType") // Populate related fields
     .then((dispatch) => {
       // Check if the dispatch exists
       if (!dispatch) {

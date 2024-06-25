@@ -1,6 +1,6 @@
 // // clientServices.js
 // clientServices.js
-import endpointURL from "../configModule.js";
+// import endpointURL from "../configModule.js";
 
 const getSelectedContactPerson = (ContactPersonId) => {
   return new Promise((resolve, reject) => {

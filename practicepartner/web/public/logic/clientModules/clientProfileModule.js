@@ -3,6 +3,7 @@ import ClientServices from "../services/clientServices.js";
 import ContactAddressPage from "./contactAddressPage.js";
 import ContactPersonPage from "./contactPersonPage.js";
 import ConferencePage from "./conferenceModules/conferencePage.js";
+
 class ClientProfileModal {
   constructor() {
     this.clientId = null;
@@ -13,73 +14,63 @@ class ClientProfileModal {
 
   async open(clientId) {
     this.clientId = clientId;
+
     if (this.clientId) {
-      ClientServices.getSelectedClient(this.clientId)
-        .then((selectedRecord) => {
-          this.populateClientFormFields(selectedRecord);
-        })
-        .then(() => {
-          this.modalTitle.text("Client Profile Management");
-          // this.modal.css("display", "block").modal("show");
-        })
-        .catch((error) => {
-          // Handle error
-          console.error("Error:", error);
-        });
-    } else {
-      //this.modalTitle.text("Add New Case");
+      try {
+        const selectedRecord = await ClientServices.getSelectedClient(
+          this.clientId
+        );
+        this.populateClientFormFields(selectedRecord);
+        this.modalTitle.text("Client Profile Management");
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
 
-    this.modal.css("display", "block").modal("show");
+    // this.modal.css("display", "block").modal("show");
+    showModal(this.modal, "Client Profile Management", this.modalTitle);
   }
 
   populateClientFormFields(selectedRecord) {
-    $(".client-number").text("Client No.:" + selectedRecord.clientNumber);
-    $(".client-name").text("Name: " + selectedRecord.clientName);
+    $(".client-number").text(`Client No.: ${selectedRecord.clientNumber}`);
+    $(".client-name").text(`Name: ${selectedRecord.clientName}`);
     $(".client-image").attr(
       "src",
-      "/assets/images/profile_pictures/" + selectedRecord.clientImage
+      `/assets/images/profile_pictures/${selectedRecord.clientImage}`
     );
-    selectedRecord.clientCategory
-      ? $(".client-category").text(
-          "Category: " + selectedRecord.clientCategory.clientCategoryName
-        )
-      : "";
-    selectedRecord.clientType
-      ? $(".client-type").text("Type: " + selectedRecord.clientType)
-      : "";
-    selectedRecord.clientReferralType
-      ? $(".client-referral-type").text(
-          "Referral: " + selectedRecord.clientReferralType
-        )
-      : "";
-    selectedRecord.clientDescription
-      ? $(".client-description").html(selectedRecord.clientDescription)
-      : "";
+    $(".client-category").text(
+      selectedRecord.clientCategory
+        ? `Category: ${selectedRecord.clientCategory.clientCategoryName}`
+        : ""
+    );
+    $(".client-type").text(
+      selectedRecord.clientType ? `Type: ${selectedRecord.clientType}` : ""
+    );
+    $(".client-referral-type").text(
+      selectedRecord.clientReferralType
+        ? `Referral: ${selectedRecord.clientReferralType}`
+        : ""
+    );
+    $(".client-description").html(selectedRecord.clientDescription || "");
   }
 
-  attachEventHandlers = async () => {
+  attachEventHandlers() {
     $("#btn-edit-client").click(() =>
       new ClientModalForm().open(this.clientId)
     );
     $("#btn-client-addresses").click(() =>
       new ContactAddressPage(this.clientId).open()
     );
-
     $("#btn-contact-persons").click(() =>
       new ContactPersonPage(this.clientId).open()
     );
     $("#btn-client-conferences").click(() =>
       new ConferencePage(this.clientId).open()
     );
-    $("#client-modal-form, #about-client-modal-form").on(
-      "hidden.bs.modal"
-      // this.getAndPopulateClientRecord.bind(this)
-    );
-  };
+    $("#client-modal-form, #about-client-modal-form").on("hidden.bs.modal");
+  }
 
   initForm() {
-    // this.getAndPopulateClientRecord();
     this.attachEventHandlers();
   }
 }
